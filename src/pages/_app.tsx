@@ -1,8 +1,22 @@
 import type { AppProps } from 'next/app';
-import '../styles/globals.css';
+import { useStore } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import { wrapper } from '@/redux/store';
+import { AppThemeProvider } from '@/providers';
+import { AppToastProvider } from '@/providers/ToastProvider';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function TMSApp({ Component, pageProps }: AppProps) {
+  const store = useStore();
+  return (
+    <AppThemeProvider>
+      <AppToastProvider>
+        <PersistGate loading={null} persistor={persistStore(store)}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </AppToastProvider>
+    </AppThemeProvider>
+  );
 }
 
-export default MyApp;
+export default wrapper.withRedux(TMSApp);

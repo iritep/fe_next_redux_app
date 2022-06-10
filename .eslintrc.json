@@ -35,27 +35,6 @@
         "singleQuote": true,
         "parser": "flow"
       }
-    ],
-    "import/named": "off",
-    "import/no-unresolved": 0,
-    "no-unused-vars": [
-      2,
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      2,
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["state"]
-      }
     ]
   }
 }
