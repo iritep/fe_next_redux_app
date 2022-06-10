@@ -3,8 +3,8 @@ import { useState, useContext, createContext, ReactNode } from 'react';
 import { AlertColor } from '@mui/material';
 import { AppToast } from '@/components/App';
 
-const AppErrorContext = createContext(null);
-AppErrorContext.displayName = `AppErrorContext`;
+const AppToastContext = createContext({});
+AppToastContext.displayName = `AppToastContext`;
 
 interface AppToastProviderProps {
   children: ReactNode | ReactNode[];
@@ -22,7 +22,7 @@ function AppToastProvider({ children, ...rest }: AppToastProviderProps) {
   };
 
   return (
-    <AppErrorContext.Provider value={value} {...rest}>
+    <AppToastContext.Provider value={value} {...rest}>
       <AppToast
         open={open}
         message={message}
@@ -31,10 +31,10 @@ function AppToastProvider({ children, ...rest }: AppToastProviderProps) {
         onClickAway={() => console.log('away clicked')}
       />
       {children}
-    </AppErrorContext.Provider>
+    </AppToastContext.Provider>
   );
 }
 
-const useAppToast = () => useContext(AppErrorContext);
+const useAppToast = () => useContext(AppToastContext);
 
 export { AppToastProvider, useAppToast };
