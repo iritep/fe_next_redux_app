@@ -23,9 +23,7 @@ jobs:
         run: CI=false && yarn install
 
       - name: Build Nextjs App
-        command: |
-            echo "TITLE=TMS Dashboard" >> .env.production
-            yarn build
+        run: echo "TITLE=TMS Dashboard" >> .env.production &&  yarn build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
