@@ -1,3 +1,61 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "quotes": "off",
+    "indent": 0,
+    "linebreak-style": 0,
+    "import/extensions": 0,
+    "operator-linebreak": 0,
+    "object-curly-newline": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "implicit-arrow-linebreak": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-uses-react": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-anonymous-default-export": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "parser": "flow"
+      }
+    ],
+    "import/named": "off",
+    "import/no-unresolved": 0,
+    "no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["state"]
+      }
+    ]
+  }
 }
