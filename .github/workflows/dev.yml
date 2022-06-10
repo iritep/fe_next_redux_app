@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   build-and-deploy:
@@ -23,11 +23,9 @@ jobs:
         run: CI=false && yarn install
 
       - name: Build Nextjs App
-        command: command: |
+        command: |
             echo "TITLE=TMS Dashboard" >> .env.production
             yarn build
-        
-        yarn build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
