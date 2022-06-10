@@ -33,7 +33,7 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./out/ s3://staging-verakari --delete
+        run: aws s3 sync ./out/ s3://tms.gate4dev.net --delete
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
