@@ -11,7 +11,7 @@ function DashboardLayout(props: Props) {
   return (
     <UILayoutWrapper>
       <AppSEO title={props.title} description="" />
-      <AppNavbar />
+      <AppNavbar isAuthenticated />
       {props.children}
     </UILayoutWrapper>
   );
