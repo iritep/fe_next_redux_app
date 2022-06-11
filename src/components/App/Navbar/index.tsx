@@ -56,7 +56,7 @@ function AppNavbar({ isAuthenticated }: Props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="inherit">
-        <Toolbar component={Container}>
+        <Toolbar component={isAuthenticated ? Box : Container}>
           <Image
             src="images/logo.png"
             loader={appImageLoader}
@@ -78,13 +78,18 @@ function AppNavbar({ isAuthenticated }: Props) {
               </Search>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton size="large" color="inherit">
+                <IconButton
+                  size="large"
+                  color="inherit"
+                  onClick={() => router.push('/settings')}
+                >
                   <SettingsIcon />
                 </IconButton>
                 <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
+                  onClick={() => router.push('/notifications')}
                 >
                   <Badge badgeContent={17} color="error">
                     <NotificationsIcon />
@@ -99,7 +104,7 @@ function AppNavbar({ isAuthenticated }: Props) {
                   onClick={handleProfileMenuOpen}
                   color="inherit"
                 >
-                  <AccountCircleIcon />
+                  <AccountCircleIcon fontSize="large" />
                 </IconButton>
               </Box>
               <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
