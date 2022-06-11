@@ -16,7 +16,7 @@ function AppNavbar() {
     <AppBar color="inherit">
       <Toolbar component={Container}>
         <AppLogoImage
-          src="/logo.png"
+          src="images/logo.png"
           loader={appImageLoader}
           width={50}
           height={50}
