@@ -23,11 +23,7 @@ jobs:
         run: CI=false && yarn install
 
       - name: Build Nextjs App
-        command: command: |
-            echo "TITLE=TMS Dashboard" >> .env.production
-            yarn build
-        
-        yarn build
+        run: echo "TITLE=TMS Dashboard" >> .env.production &&  yarn build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -37,7 +33,7 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./out/ s3://staging-verakari --delete
+        run: aws s3 sync ./out/ s3://tms.gate4dev.net --delete
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
