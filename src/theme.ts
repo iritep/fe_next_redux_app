@@ -4,7 +4,7 @@ const createAppTheme = (mode: PaletteMode) =>
   createTheme({
     palette: { mode },
     typography: {
-      fontFamily: `Public Sans', sans-serif`,
+      fontFamily: `'Public Sans', sans-serif`,
     },
   });
 

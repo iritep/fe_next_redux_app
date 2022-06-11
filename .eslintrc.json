@@ -29,12 +29,6 @@
     "react-hooks/exhaustive-deps": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-anonymous-default-export": 0,
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "parser": "flow"
-      }
-    ]
+    "prettier/prettier": 0
   }
 }
