@@ -1,13 +1,8 @@
 import { ReactNode } from 'react';
-import { Box, styled, Container, Fab, Toolbar } from '@mui/material';
+import { Container, Fab, Toolbar } from '@mui/material';
 import { AppSEO, AppNavbar, AppScrollTop } from '@/components/App';
+import { UILayoutWrapper } from '@/components/UI';
 import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
-
-const AppLayoutWrapper = styled(Box)({
-  width: '100%',
-  minHeight: '100vh',
-  scrollBehavior: 'smooth',
-});
 
 interface Props {
   children: ReactNode | ReactNode[];
@@ -15,7 +10,7 @@ interface Props {
 
 function AppLayout(props: Props) {
   return (
-    <AppLayoutWrapper>
+    <UILayoutWrapper>
       <AppSEO title="" description="" />
       <AppNavbar />
       <Toolbar id="back-to-top-anchor" />
@@ -25,7 +20,7 @@ function AppLayout(props: Props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </AppScrollTop>
-    </AppLayoutWrapper>
+    </UILayoutWrapper>
   );
 }
 

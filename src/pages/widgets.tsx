@@ -1,14 +1,14 @@
 import { UIFlexCenterBox } from '@/components/UI';
-import { AppLayout } from '@/layouts';
+import { DashboardLayout } from '@/layouts';
 import { Typography } from '@mui/material';
 
 function WidgetPage() {
   return (
-    <AppLayout>
+    <DashboardLayout title="Widgets">
       <UIFlexCenterBox sx={{ mt: 5 }}>
-        <Typography variant="h3">Home Page</Typography>
+        <Typography variant="h3">Widget Page</Typography>
       </UIFlexCenterBox>
-    </AppLayout>
+    </DashboardLayout>
   );
 }
 
