@@ -3,6 +3,11 @@ import { RootState, AppThunk } from '@/redux/store';
 import { PaletteMode } from '@mui/material';
 import { ReduxState } from '@/types';
 
+export enum ThemeMode {
+  LIGHT = `light`,
+  DARK = `dark`,
+}
+
 const initialState: ReduxState.AppState = {
   theme: {
     mode: `light`,
@@ -29,7 +34,12 @@ const { setThemeMode, setLoading } = appSlice.actions;
 
 export const toggleThemeMode = (): AppThunk => (dispatch, getState) => {
   const { mode } = getState().app.theme;
-  dispatch(setThemeMode(mode === `light` ? `dark` : `light`));
+  let themeMode = ThemeMode.LIGHT;
+  if (mode === ThemeMode.LIGHT) {
+    themeMode = ThemeMode.DARK;
+  }
+
+  dispatch(setThemeMode(themeMode));
 };
 
 export const setUILoading =

@@ -1,1 +1,6 @@
-export { default as appSlice, appSelector } from './app.slice';
+export {
+  default as appSlice,
+  appSelector,
+  toggleThemeMode,
+  setUILoading,
+} from './app.slice';

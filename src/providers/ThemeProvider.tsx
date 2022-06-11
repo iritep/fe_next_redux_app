@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/hooks';
 import { appSelector } from '@/redux/slices';
 import createAppTheme from '@/theme';
 

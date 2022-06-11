@@ -1,5 +1,6 @@
 {
   "env": {
+    "jest": true,
     "browser": true,
     "es2021": true,
     "node": true
@@ -10,25 +11,14 @@
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "quotes": "off",
-    "indent": 0,
-    "linebreak-style": 0,
-    "import/extensions": 0,
-    "operator-linebreak": 0,
-    "object-curly-newline": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/jsx-props-no-spreading": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-one-expression-per-line": 0,
-    "implicit-arrow-linebreak": 0,
-    "@typescript-eslint/no-namespace": 0,
-    "import/prefer-default-export": 0,
-    "react/jsx-uses-react": "off",
+    "prefer-const": "off",
     "react-hooks/exhaustive-deps": "off",
-    "import/no-extraneous-dependencies": "off",
-    "import/no-anonymous-default-export": 0,
-    "prettier/prettier": 0
+    "@next/next/no-sync-scripts": "off",
+    "import/no-anonymous-default-export": "off",
+    "@typescript-eslint/no-unused-vars": [2, { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-namespace": 0
   }
 }

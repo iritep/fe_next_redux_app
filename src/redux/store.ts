@@ -13,13 +13,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { ReduxState } from '@/types';
 import { createWrapper } from 'next-redux-wrapper';
+import { ReduxState } from '@/types';
 import storage from './storage';
 import { appSlice } from './slices';
 
 const combinedReducer = combineReducers<{
-  app: ReduxState.AppState,
+  app: ReduxState.AppState;
 }>({
   app: appSlice,
 });
@@ -53,7 +53,7 @@ type StoreGetState = ConfiguredStore['getState'];
 
 export type RootState = ReturnType<StoreGetState>;
 export type AppDispatch = ConfiguredStore['dispatch'];
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
+export type AppThunk = ThunkAction<void, RootState, undefined, Action<string>>;
 
-const wrapper = createWrapper<ConfiguredStore>(createStore);
+const wrapper = createWrapper<ConfiguredStore>(createStore, { debug: true });
 export { wrapper, createStore };

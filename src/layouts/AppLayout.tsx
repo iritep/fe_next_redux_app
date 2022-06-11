@@ -1,51 +1,16 @@
-import { MouseEvent, ReactElement } from 'react';
-import { Box, styled, Container, Fab, Zoom, Toolbar } from '@mui/material';
-import { AppSEO, AppNavbar } from '@/components/App';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { ReactNode } from 'react';
+import { Box, styled, Container, Fab, Toolbar } from '@mui/material';
+import { AppSEO, AppNavbar, AppScrollTop } from '@/components/App';
+import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 
 const AppLayoutWrapper = styled(Box)({
-  width: '100vw',
+  width: '100%',
   minHeight: '100vh',
   scrollBehavior: 'smooth',
 });
 
 interface Props {
-  window?: () => Window;
-  children: ReactElement;
-}
-
-function ScrollTop(props: Props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    const anchor = (
-      (event.target as HTMLDivElement).ownerDocument || document
-    ).querySelector('#back-to-top-anchor');
-
-    if (anchor) {
-      anchor.scrollIntoView({
-        block: 'center',
-      });
-    }
-  };
-
-  return (
-    <Zoom in={trigger}>
-      <Box
-        onClick={handleClick}
-        role="presentation"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
-      >
-        {children}
-      </Box>
-    </Zoom>
-  );
+  children: ReactNode | ReactNode[];
 }
 
 function AppLayout(props: Props) {
@@ -54,13 +19,12 @@ function AppLayout(props: Props) {
       <AppSEO title="" description="" />
       <AppNavbar />
       <Toolbar id="back-to-top-anchor" />
-      <Container>{props.children}</Container>
-
-      <ScrollTop {...props}>
+      <Container sx={{ py: 3 }}>{props.children}</Container>
+      <AppScrollTop>
         <Fab size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
-      </ScrollTop>
+      </AppScrollTop>
     </AppLayoutWrapper>
   );
 }
