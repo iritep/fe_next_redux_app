@@ -1,12 +1,18 @@
 import { styled, alpha, InputBase } from '@mui/material';
+import { grey } from '@mui/material/colors';
+import { isDarkTheme } from '@/theme';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   margin: theme.spacing(0, 4),
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: isDarkTheme(theme)
+    ? alpha(theme.palette.common.white, 0.15)
+    : grey[50],
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: isDarkTheme(theme)
+      ? alpha(theme.palette.common.white, 0.25)
+      : grey[100],
   },
   marginRight: theme.spacing(2),
   width: '100%',
