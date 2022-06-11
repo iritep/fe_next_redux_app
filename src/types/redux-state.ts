@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { PaletteMode } from '@mui/material';
 
 export declare namespace ReduxState {
