@@ -1,4 +1,6 @@
 import { styled, Box } from '@mui/material';
+import { grey } from '@mui/material/colors';
+import { isDarkTheme } from '@/theme';
 
 export const UIFlexSpaceBox = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -23,3 +25,10 @@ export const UIFlexColumnBox = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(2.5),
   paddingBottom: theme.spacing(2.5),
 }));
+
+export const UILayoutMain = styled('main')(
+  ({ theme }) =>
+    !isDarkTheme(theme) && {
+      backgroundColor: grey['100'],
+    }
+);

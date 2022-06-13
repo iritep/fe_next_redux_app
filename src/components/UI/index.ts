@@ -1,2 +1,7 @@
-export { UIFlexSpaceBox, UIFlexCenterBox, UIFlexColumnBox } from './Box';
+export {
+  UIFlexSpaceBox,
+  UIFlexCenterBox,
+  UIFlexColumnBox,
+  UILayoutMain,
+} from './Box';
 export { UILayoutWrapper } from './Wrapper';

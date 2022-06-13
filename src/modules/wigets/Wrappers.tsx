@@ -48,10 +48,18 @@ export const SectionWrapper = ({ title, endIcon, children }: SectionProps) => {
       sx={{ borderRadius: 2, px: 3, py: 2 }}
     >
       <UIFlexSpaceBox>
-        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+        <Typography
+          variant="subtitle1"
+          sx={{ fontWeight: 600 }}
+          color={theme.palette.grey['800']}
+        >
           {title || 'Empty Title'}
         </Typography>
-        <Box component={endIcon} fontSize="24px" />
+        <Box
+          component={endIcon}
+          fontSize="24px"
+          color={theme.palette.grey['800']}
+        />
       </UIFlexSpaceBox>
       <Divider />
       <Box sx={{ minHeight: 150 }}>{children}</Box>

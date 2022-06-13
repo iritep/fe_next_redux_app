@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Container, Fab, Toolbar } from '@mui/material';
 import { AppSEO, AppNavbar, AppScrollTop } from '@/components/App';
-import { UILayoutWrapper } from '@/components/UI';
+import { UILayoutMain, UILayoutWrapper } from '@/components/UI';
 import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 
 interface Props {
@@ -14,7 +14,9 @@ function AppLayout(props: Props) {
       <AppSEO title="" description="" />
       <AppNavbar />
       <Toolbar id="back-to-top-anchor" />
-      <Container sx={{ py: 3 }}>{props.children}</Container>
+      <UILayoutMain>
+        <Container sx={{ py: 3 }}>{props.children}</Container>
+      </UILayoutMain>
       <AppScrollTop>
         <Fab size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
