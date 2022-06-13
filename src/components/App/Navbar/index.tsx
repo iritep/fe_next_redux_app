@@ -58,7 +58,10 @@ function AppNavbar({ isAuthenticated }: Props) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="inherit" sx={isDarkTheme(theme) || { boxShadow: 'none' }}>
+      <AppBar
+        color="inherit"
+        sx={!isDarkTheme(theme) ? { boxShadow: 'none' } : undefined}
+      >
         <Toolbar component={isAuthenticated ? Box : Container}>
           <Image
             src="images/logo.png"

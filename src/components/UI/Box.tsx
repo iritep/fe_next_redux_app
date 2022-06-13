@@ -26,9 +26,6 @@ export const UIFlexColumnBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2.5),
 }));
 
-export const UILayoutMain = styled('main')(
-  ({ theme }) =>
-    !isDarkTheme(theme) && {
-      backgroundColor: grey['100'],
-    }
+export const UILayoutMain = styled('main')(({ theme }) =>
+  !isDarkTheme(theme) ? { backgroundColor: grey['100'] } : undefined
 );
