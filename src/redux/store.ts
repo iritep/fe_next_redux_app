@@ -14,14 +14,16 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { createWrapper } from 'next-redux-wrapper';
-import { ReduxState } from '@/types';
+import { ReduxStateTypes } from '@/types';
 import storage from './storage';
-import { appSlice } from './slices';
+import { appReducer, widgetReducer } from './slices';
 
 const combinedReducer = combineReducers<{
-  app: ReduxState.AppState;
+  app: ReduxStateTypes.AppState;
+  widget: ReduxStateTypes.WidgetState;
 }>({
-  app: appSlice,
+  app: appReducer,
+  widget: widgetReducer,
 });
 
 const createStore = () => {

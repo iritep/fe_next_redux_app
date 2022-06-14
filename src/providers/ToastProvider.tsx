@@ -1,9 +1,13 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import { useState, useContext, createContext, ReactNode } from 'react';
 import { AlertColor } from '@mui/material';
 import { AppToast } from '@/components/App';
 
-const AppToastContext = createContext({});
+type ToastContextType = {
+  severity?: AlertColor | null;
+  message?: string | null;
+};
+
+const AppToastContext = createContext<any>(null);
 AppToastContext.displayName = `AppToastContext`;
 
 interface AppToastProviderProps {
@@ -15,10 +19,10 @@ function AppToastProvider({ children, ...rest }: AppToastProviderProps) {
   const [message, setMessage] = useState<string>('');
   const [severity, setSeverity] = useState<AlertColor>('success');
 
-  const value = (option: AlertColor, text: string) => {
+  const value = ({ severity, message }: ToastContextType) => {
     setOpen(true);
-    setMessage(text);
-    setSeverity(option);
+    setMessage(message || '');
+    setSeverity(severity || 'success');
   };
 
   return (

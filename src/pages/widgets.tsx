@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DragEvent, useState } from 'react';
-import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 import {
   Newspaper as NewspaperIcon,
   Chat as ChatIcon,
@@ -17,9 +15,13 @@ import {
   WidgetSideWrapper,
   WidgetSectionWrapper,
   WidgetMainBoard,
+  getNewDraggedItem,
+  genStoryData,
 } from '@/modules/wigets';
-import { WidgetTypes } from '@/types';
-import { onDragOver, onDragStart } from '@/utils';
+import { ResponseStatus, WidgetTypes } from '@/types';
+import { onDragOver } from '@/utils';
+import { useAppToast } from '@/providers';
+import { useStoryData } from '@/hooks';
 import {
   widgetStories,
   widgetConvs,
@@ -28,31 +30,25 @@ import {
 } from '@/constants/mock-data';
 
 function WidgetPage() {
+  const appToast = useAppToast();
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
     []
   );
 
-  const getNewDraggedItem = (id: string, type: string): WidgetTypes.Widget => {
-    let newItem = {};
-    if (type === 'story') {
-      widgetStories.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'conversation') {
-      widgetConvs.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'note') {
-      widgetNotes.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'document') {
-      widgetDocs.map((item) => {
-        if (item.id === id) newItem = { ...item };
+  const { loading, data, status } = useStoryData();
+  useEffect(() => {
+    if (!loading && data) {
+      const tmp = genStoryData(data);
+      console.log(JSON.stringify(tmp, null, 2));
+    }
+
+    if (status === ResponseStatus.SUCCESS) {
+      appToast({
+        severity: 'success',
+        message: 'Successfully, the stories has been loaded!',
       });
     }
-    return newItem;
-  };
+  }, [loading, data, status]);
 
   const onDrop = (e: {
     dataTransfer: { getData: (arg0: string) => string };
