@@ -12,3 +12,5 @@ export {
   MiniItemDoc as WidgetMiniItemDoc,
   MiniItemNote as WidgetMiniItemNote,
 } from './Items';
+
+export { getNewDraggedItem } from './logic';

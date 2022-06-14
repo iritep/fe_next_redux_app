@@ -12,7 +12,7 @@ import {
   SvgIcon,
 } from '@mui/material';
 import { WidgetTypes } from '@/types';
-import { onDragOver, onDragStart } from '@/utils';
+import { onDragStart } from '@/utils';
 import {
   ArticleOutlined as ArticleOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
@@ -27,26 +27,27 @@ type Props = {
 
 export const MiniItemStory = ({ draggable, item }: Props) => {
   return (
-    <Card
+    <Box
       draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
-      component={Box}
-      sx={{ width: 80 }}
+      sx={{ cursor: 'pointer' }}
     >
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="60"
-          image="https://picsum.photos/seed/picsum/200/300"
-          alt="green iguana"
-        />
-        <CardContent sx={{ p: 0.5, textAlign: 'center' }}>
-          <Typography gutterBottom variant="caption">
-            {item.text}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+      <Card sx={{ width: 80 }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="60"
+            image="https://picsum.photos/seed/picsum/200/300"
+            alt="green iguana"
+          />
+          <CardContent sx={{ p: 0.5, textAlign: 'center' }}>
+            <Typography gutterBottom variant="caption">
+              {item.text}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Box>
   );
 };
 
@@ -54,7 +55,7 @@ export const MiniItemConv = ({ draggable, item }: Props) => {
   const theme = useTheme();
   return (
     <UIFlexSpaceBox
-      sx={{ width: '100%' }}
+      sx={{ width: '100%', cursor: 'pointer' }}
       draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
     >
@@ -89,8 +90,8 @@ export const MiniItemDoc = ({ draggable, item }: Props) => {
 
   return (
     <UIFlexSpaceBox
-      sx={{ width: '100%' }}
       draggable={draggable}
+      sx={{ width: '100%', cursor: 'pointer' }}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
     >
       <Box component={AccountCircleOutlinedIcon} fontSize="48px" />
@@ -113,14 +114,12 @@ export const MiniItemDoc = ({ draggable, item }: Props) => {
 };
 
 export const MiniItemNote = ({ draggable, item }: Props) => {
-  const theme = useTheme();
-
   return (
     <UIFlexColumnBox
       draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
       component={Box}
-      sx={{ width: 80, position: 'relative', pb: 2 }}
+      sx={{ width: 80, position: 'relative', pb: 2, cursor: 'pointer' }}
     >
       <NoteAltOutlinedIcon sx={{ fontSize: '56px' }} />
       <Typography

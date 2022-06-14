@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DragEvent, useState } from 'react';
-import { Box } from '@mui/material';
+import { useState } from 'react';
 import {
   Newspaper as NewspaperIcon,
   Chat as ChatIcon,
@@ -17,9 +15,10 @@ import {
   WidgetSideWrapper,
   WidgetSectionWrapper,
   WidgetMainBoard,
+  getNewDraggedItem,
 } from '@/modules/wigets';
 import { WidgetTypes } from '@/types';
-import { onDragOver, onDragStart } from '@/utils';
+import { onDragOver } from '@/utils';
 import {
   widgetStories,
   widgetConvs,
@@ -31,28 +30,6 @@ function WidgetPage() {
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
     []
   );
-
-  const getNewDraggedItem = (id: string, type: string): WidgetTypes.Widget => {
-    let newItem = {};
-    if (type === 'story') {
-      widgetStories.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'conversation') {
-      widgetConvs.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'note') {
-      widgetNotes.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    } else if (type === 'document') {
-      widgetDocs.map((item) => {
-        if (item.id === id) newItem = { ...item };
-      });
-    }
-    return newItem;
-  };
 
   const onDrop = (e: {
     dataTransfer: { getData: (arg0: string) => string };
