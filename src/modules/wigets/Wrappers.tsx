@@ -9,7 +9,7 @@ import {
   Divider,
   SvgIconProps,
 } from '@mui/material';
-import { UIFlexSpaceBox } from '@/components/UI';
+import { UIFlexCenterBox, UIFlexSpaceBox } from '@/components/UI';
 import { isDarkTheme } from '@/theme';
 
 interface WrapperProps {
@@ -26,7 +26,7 @@ export const PageWrapper = ({ children }: WrapperProps) => {
 
 export const SideWrapper = ({ children }: WrapperProps) => {
   return (
-    <Box sx={{ width: 350, minHeight: '90vh', p: 4 }}>
+    <Box sx={{ width: 380, minHeight: '90vh', p: 4 }}>
       <Stack spacing={3}>{children}</Stack>
     </Box>
   );
@@ -62,7 +62,15 @@ export const SectionWrapper = ({ title, endIcon, children }: SectionProps) => {
         />
       </UIFlexSpaceBox>
       <Divider />
-      <Box sx={{ minHeight: 150 }}>{children}</Box>
+      <UIFlexCenterBox
+        sx={{
+          pt: 0.5,
+          minHeight: 150,
+          flexWrap: 'wrap',
+        }}
+      >
+        {children}
+      </UIFlexCenterBox>
     </Stack>
   );
 };

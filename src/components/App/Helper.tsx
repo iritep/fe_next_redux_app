@@ -31,7 +31,7 @@ function AppHelper() {
   const handleClick = () => setOpen(!open);
 
   return (
-    <Box sx={{ position: 'fixed', bottom: 40, right: 50 }}>
+    <Box sx={{ position: 'fixed', bottom: 20, right: 30 }}>
       <Zoom
         in
         timeout={{

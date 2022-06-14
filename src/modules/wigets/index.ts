@@ -5,3 +5,10 @@ export {
 } from './Wrappers';
 
 export { default as WidgetMainBoard } from './MainBoard';
+
+export {
+  MiniItemConv as WidgetMiniItemConv,
+  MiniItemStory as WidgetMiniItemStory,
+  MiniItemDoc as WidgetMiniItemDoc,
+  MiniItemNote as WidgetMiniItemNote,
+} from './Items';
