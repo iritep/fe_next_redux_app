@@ -11,6 +11,7 @@ import { DashboardLayout } from '@/layouts';
 import {
   WidgetItemStory,
   WidgetItemConv,
+  WidgetItemDoc,
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetSectionWrapper,
@@ -18,7 +19,7 @@ import {
 } from '@/modules/wigets';
 import { WidgetTypes } from '@/types';
 import { onDragOver, onDragStart } from '@/utils';
-import { widgetStories, widgetConvs } from '@/constants/mock-data';
+import { widgetStories, widgetConvs, widgetDocs } from '@/constants/mock-data';
 
 function WidgetPage() {
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
@@ -71,7 +72,9 @@ function WidgetPage() {
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
-            Section 3
+            {widgetDocs.map((item) => (
+              <WidgetItemDoc key={item.id} item={item} />
+            ))}
           </WidgetSectionWrapper>
         </WidgetSideWrapper>
 

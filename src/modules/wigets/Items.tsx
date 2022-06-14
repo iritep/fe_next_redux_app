@@ -12,7 +12,10 @@ import {
 } from '@mui/material';
 import { WidgetTypes } from '@/types';
 import { onDragOver, onDragStart } from '@/utils';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import {
+  ArticleOutlined as ArticleOutlinedIcon,
+  AccountCircleOutlined as AccountCircleOutlinedIcon,
+} from '@mui/icons-material';
 import { UIFlexSpaceBox, UIFlexColumnBox } from '@/components/UI';
 
 type Props = {
@@ -59,14 +62,48 @@ export const ItemConv = ({ item }: Props) => {
         sx={{ p: `${theme.spacing(0.5)} ${theme.spacing(1)}`, flex: 1 }}
       >
         <UIFlexSpaceBox>
-          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontSize: 13, fontWeight: 600 }}
+          >
             Eric Knoll
           </Typography>
-          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontSize: 13, fontWeight: 600 }}
+          >
             6: 15 PM
           </Typography>
         </UIFlexSpaceBox>
         <Typography variant="caption">I just got back to the year!</Typography>
+      </Paper>
+    </UIFlexSpaceBox>
+  );
+};
+
+export const ItemDoc = ({ item }: Props) => {
+  const theme = useTheme();
+
+  return (
+    <UIFlexSpaceBox
+      sx={{ width: '100%' }}
+      draggable
+      onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
+    >
+      <Box component={AccountCircleOutlinedIcon} fontSize="48px" />
+      <Paper
+        elevation={0}
+        sx={{ p: `${theme.spacing(0.5)} ${theme.spacing(1)}`, flex: 1 }}
+      >
+        <Typography variant="subtitle2" sx={{ fontSize: 13, fontWeight: 800 }}>
+          Eric Knoll
+        </Typography>
+        <Box>
+          <ArticleOutlinedIcon fontSize="large" />
+          <ArticleOutlinedIcon fontSize="large" />
+          <ArticleOutlinedIcon fontSize="large" />
+          <ArticleOutlinedIcon fontSize="large" />
+        </Box>
       </Paper>
     </UIFlexSpaceBox>
   );

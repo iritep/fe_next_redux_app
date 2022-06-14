@@ -9,4 +9,5 @@ export { default as WidgetMainBoard } from './MainBoard';
 export {
   ItemConv as WidgetItemConv,
   ItemStory as WidgetItemStory,
+  ItemDoc as WidgetItemDoc,
 } from './Items';

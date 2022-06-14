@@ -14,3 +14,9 @@ export const widgetConvs: WidgetTypes.Widget[] = [
   { id: '2', text: 'Conversation #2', x: 0, y: 0, type: 'conversation' },
   { id: '3', text: 'Conversation #3', x: 0, y: 0, type: 'conversation' },
 ];
+
+export const widgetDocs: WidgetTypes.Widget[] = [
+  { id: '1', text: 'Document #1', x: 0, y: 0, type: 'document' },
+  { id: '2', text: 'Document #2', x: 0, y: 0, type: 'document' },
+  { id: '3', text: 'Document #3', x: 0, y: 0, type: 'document' },
+];
