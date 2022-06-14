@@ -39,7 +39,7 @@ function WidgetPage() {
   useEffect(() => {
     if (!loading && data) {
       const tmp = genStoryData(data);
-      console.log(tmp);
+      console.log(JSON.stringify(tmp, null, 2));
     }
 
     if (status === ResponseStatus.SUCCESS) {
