@@ -62,12 +62,12 @@ function WidgetPage() {
             endIcon={NewspaperIcon}
           >
             {widgetStories.map((item) => (
-              <WidgetItemStory key={item.id} item={item} text={item.text} />
+              <WidgetItemStory key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Conversations" endIcon={ChatIcon}>
             {widgetConvs.map((item) => (
-              <WidgetItemConv key={item.id} item={item} text={item.text} />
+              <WidgetItemConv key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
