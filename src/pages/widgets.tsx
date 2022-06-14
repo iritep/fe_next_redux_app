@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Newspaper as NewspaperIcon,
   Chat as ChatIcon,
@@ -16,20 +16,36 @@ import {
   WidgetSectionWrapper,
   WidgetMainBoard,
   getNewDraggedItem,
+  genStoryData,
 } from '@/modules/wigets';
-import { WidgetTypes } from '@/types';
+import { ResponseStatus, WidgetTypes } from '@/types';
 import { onDragOver } from '@/utils';
-import {
-  widgetStories,
-  widgetConvs,
-  widgetDocs,
-  widgetNotes,
-} from '@/constants/mock-data';
+import { useAppToast } from '@/providers';
+import { useStoryData } from '@/hooks';
+import { widgetConvs, widgetDocs, widgetNotes } from '@/constants/mock-data';
 
 function WidgetPage() {
+  const appToast = useAppToast();
+  const [widgetStories, setWidgetStories] = useState<WidgetTypes.Widget[]>([]);
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
     []
   );
+
+  const { loading, data, status } = useStoryData();
+
+  useEffect(() => {
+    if (!loading && data) {
+      const tmp = genStoryData(data);
+      setWidgetStories(tmp);
+    }
+
+    if (status === ResponseStatus.SUCCESS) {
+      appToast({
+        severity: 'success',
+        message: 'Successfully, the stories has been loaded!',
+      });
+    }
+  }, [loading, data, status]);
 
   const onDrop = (e: {
     dataTransfer: { getData: (arg0: string) => string };

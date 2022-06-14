@@ -1,4 +1,4 @@
-import { WidgetTypes } from '@/types';
+import { WidgetTypes, WidgetItemType } from '@/types';
 
 import {
   widgetStories,
@@ -9,7 +9,7 @@ import {
 
 export const getNewDraggedItem = (
   id: string,
-  type: WidgetTypes.WidgetType | string
+  type: WidgetItemType | string
 ): WidgetTypes.Widget => {
   let newItem = {};
   if (type === 'story') {
@@ -30,4 +30,13 @@ export const getNewDraggedItem = (
     });
   }
   return newItem;
+};
+
+export const genStoryData = (data: WidgetTypes.Story[]) => {
+  if (!data) return [];
+  return data.map((el) => ({
+    ...el,
+    text: el.author,
+    avatar: el.download_url,
+  }));
 };

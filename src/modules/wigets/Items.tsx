@@ -37,7 +37,7 @@ export const MiniItemStory = ({ draggable, item }: Props) => {
           <CardMedia
             component="img"
             height="60"
-            image="https://picsum.photos/seed/picsum/200/300"
+            image={item.avatar}
             alt="green iguana"
           />
           <CardContent sx={{ p: 0.5, textAlign: 'center' }}>

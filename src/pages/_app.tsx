@@ -4,7 +4,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { wrapper } from '@/redux/store';
 import { AppThemeProvider } from '@/providers';
-import { AppToastProvider } from '@/providers/ToastProvider';
+import { AppToastProvider } from '@/providers';
 
 function TMSApp({ Component, pageProps }: AppProps) {
   const store = useStore();
