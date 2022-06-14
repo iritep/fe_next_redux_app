@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
 import { isDarkTheme } from '@/theme';
-import Draggable from 'react-draggable';
-import { WidgetState } from '@/types';
+import { WidgetTypes } from '@/types';
+import {
+  WidgetMiniItemStory,
+  WidgetMiniItemConv,
+  WidgetMiniItemDoc,
+  WidgetMiniItemNote,
+} from '@/modules/wigets';
 
 type WidgetMainBoardProps = {
   onDragOver: (e: {
@@ -13,7 +20,7 @@ type WidgetMainBoardProps = {
     pageX: number;
     pageY: number;
   }) => void;
-  draggedWidgets: WidgetState.Widget[];
+  draggedWidgets: WidgetTypes.Widget[];
 };
 
 function WidgetMainBoard({
@@ -33,22 +40,23 @@ function WidgetMainBoard({
         elevation={0}
         variant={isDarkTheme(theme) ? 'outlined' : 'elevation'}
       >
-        <>
-          {draggedWidgets.map((item: WidgetState.Widget) => (
-            <Draggable
-              key={item.id}
-              axis="both"
-              defaultPosition={{ x: 0, y: 0 }}
-              bounds="parent"
-            >
-              <Box sx={{ display: 'inline-block' }}>
-                <Box component={'span'} key={item.id}>
-                  {item.text}
-                </Box>
-              </Box>
-            </Draggable>
-          ))}
-        </>
+        {draggedWidgets.map((item: WidgetTypes.Widget, index: number) => (
+          <Draggable
+            key={index}
+            axis="both"
+            defaultPosition={{ x: 0, y: 0 }}
+            bounds="parent"
+          >
+            <Box sx={{ display: 'inline-block' }}>
+              {item.type === 'story' && <WidgetMiniItemStory item={item} />}
+              {item.type === 'conversation' && (
+                <WidgetMiniItemConv item={item} />
+              )}
+              {item.type === 'note' && <WidgetMiniItemNote item={item} />}
+              {item.type === 'document' && <WidgetMiniItemDoc item={item} />}
+            </Box>
+          </Draggable>
+        ))}
       </Paper>
     </Box>
   );

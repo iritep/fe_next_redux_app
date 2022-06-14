@@ -21,13 +21,14 @@ import {
 import { UIFlexSpaceBox, UIFlexColumnBox } from '@/components/UI';
 
 type Props = {
+  draggable?: boolean;
   item: WidgetTypes.Widget;
 };
 
-export const ItemStory = ({ item }: Props) => {
+export const MiniItemStory = ({ draggable, item }: Props) => {
   return (
     <Card
-      draggable
+      draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
       component={Box}
       sx={{ width: 80 }}
@@ -49,12 +50,12 @@ export const ItemStory = ({ item }: Props) => {
   );
 };
 
-export const ItemConv = ({ item }: Props) => {
+export const MiniItemConv = ({ draggable, item }: Props) => {
   const theme = useTheme();
   return (
     <UIFlexSpaceBox
       sx={{ width: '100%' }}
-      draggable
+      draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
     >
       <Box component={AccountCircleOutlinedIcon} fontSize="48px" />
@@ -83,13 +84,13 @@ export const ItemConv = ({ item }: Props) => {
   );
 };
 
-export const ItemDoc = ({ item }: Props) => {
+export const MiniItemDoc = ({ draggable, item }: Props) => {
   const theme = useTheme();
 
   return (
     <UIFlexSpaceBox
       sx={{ width: '100%' }}
-      draggable
+      draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
     >
       <Box component={AccountCircleOutlinedIcon} fontSize="48px" />
@@ -111,12 +112,12 @@ export const ItemDoc = ({ item }: Props) => {
   );
 };
 
-export const ItemNote = ({ item }: Props) => {
+export const MiniItemNote = ({ draggable, item }: Props) => {
   const theme = useTheme();
 
   return (
     <UIFlexColumnBox
-      draggable
+      draggable={draggable}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
       component={Box}
       sx={{ width: 80, position: 'relative', pb: 2 }}

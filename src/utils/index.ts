@@ -1,9 +1,9 @@
-import { WidgetState } from '@/types';
+import { WidgetTypes } from '@/types';
 import { DragEvent } from 'react';
 
 export const onDragStart = (
   e: DragEvent<HTMLSpanElement>,
-  item: WidgetState.Widget
+  item: WidgetTypes.Widget
 ) => {
   e.dataTransfer.setData('id', `${item.id}`);
   e.dataTransfer.setData('type', `${item.type}`);

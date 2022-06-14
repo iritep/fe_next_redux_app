@@ -7,8 +7,8 @@ export {
 export { default as WidgetMainBoard } from './MainBoard';
 
 export {
-  ItemConv as WidgetItemConv,
-  ItemStory as WidgetItemStory,
-  ItemDoc as WidgetItemDoc,
-  ItemNote as WidgetItemNote,
+  MiniItemConv as WidgetMiniItemConv,
+  MiniItemStory as WidgetMiniItemStory,
+  MiniItemDoc as WidgetMiniItemDoc,
+  MiniItemNote as WidgetMiniItemNote,
 } from './Items';

@@ -9,10 +9,10 @@ import {
 } from '@mui/icons-material';
 import { DashboardLayout } from '@/layouts';
 import {
-  WidgetItemStory,
-  WidgetItemConv,
-  WidgetItemDoc,
-  WidgetItemNote,
+  WidgetMiniItemStory,
+  WidgetMiniItemConv,
+  WidgetMiniItemDoc,
+  WidgetMiniItemNote,
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetSectionWrapper,
@@ -42,6 +42,14 @@ function WidgetPage() {
       widgetConvs.map((item) => {
         if (item.id === id) newItem = { ...item };
       });
+    } else if (type === 'note') {
+      widgetNotes.map((item) => {
+        if (item.id === id) newItem = { ...item };
+      });
+    } else if (type === 'document') {
+      widgetDocs.map((item) => {
+        if (item.id === id) newItem = { ...item };
+      });
     }
     return newItem;
   };
@@ -69,17 +77,17 @@ function WidgetPage() {
             endIcon={NewspaperIcon}
           >
             {widgetStories.map((item) => (
-              <WidgetItemStory key={item.id} item={item} />
+              <WidgetMiniItemStory draggable key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Conversations" endIcon={ChatIcon}>
             {widgetConvs.map((item) => (
-              <WidgetItemConv key={item.id} item={item} />
+              <WidgetMiniItemConv draggable key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
             {widgetDocs.map((item) => (
-              <WidgetItemDoc key={item.id} item={item} />
+              <WidgetMiniItemDoc draggable key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
         </WidgetSideWrapper>
@@ -95,7 +103,7 @@ function WidgetPage() {
           <WidgetSectionWrapper title="Dispatch">No data</WidgetSectionWrapper>
           <WidgetSectionWrapper title="Notes" endIcon={BorderColorIcon}>
             {widgetNotes.map((item) => (
-              <WidgetItemNote key={item.id} item={item} />
+              <WidgetMiniItemNote draggable key={item.id} item={item} />
             ))}
           </WidgetSectionWrapper>
         </WidgetSideWrapper>
