@@ -4,6 +4,6 @@ export declare namespace WidgetTypes {
     text?: string;
     x?: number;
     y?: number;
-    type?: 'story' | 'conversation' | 'document';
+    type?: 'story' | 'conversation' | 'document' | 'note';
   };
 }

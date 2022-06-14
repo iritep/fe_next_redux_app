@@ -22,8 +22,6 @@ export const UIFlexColumnBox = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   gap: theme.spacing(1),
-  paddingTop: theme.spacing(2.5),
-  paddingBottom: theme.spacing(2.5),
 }));
 
 export const UILayoutMain = styled('main')(({ theme }) =>

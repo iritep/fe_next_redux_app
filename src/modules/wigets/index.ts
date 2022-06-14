@@ -10,4 +10,5 @@ export {
   ItemConv as WidgetItemConv,
   ItemStory as WidgetItemStory,
   ItemDoc as WidgetItemDoc,
+  ItemNote as WidgetItemNote,
 } from './Items';

@@ -12,6 +12,7 @@ import {
   WidgetItemStory,
   WidgetItemConv,
   WidgetItemDoc,
+  WidgetItemNote,
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetSectionWrapper,
@@ -19,7 +20,12 @@ import {
 } from '@/modules/wigets';
 import { WidgetTypes } from '@/types';
 import { onDragOver, onDragStart } from '@/utils';
-import { widgetStories, widgetConvs, widgetDocs } from '@/constants/mock-data';
+import {
+  widgetStories,
+  widgetConvs,
+  widgetDocs,
+  widgetNotes,
+} from '@/constants/mock-data';
 
 function WidgetPage() {
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
@@ -85,12 +91,12 @@ function WidgetPage() {
         />
 
         <WidgetSideWrapper>
-          <WidgetSectionWrapper title="">Section 4</WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Dispatch">
-            Section 5
-          </WidgetSectionWrapper>
+          <WidgetSectionWrapper title="">No data</WidgetSectionWrapper>
+          <WidgetSectionWrapper title="Dispatch">No data</WidgetSectionWrapper>
           <WidgetSectionWrapper title="Notes" endIcon={BorderColorIcon}>
-            Section 6
+            {widgetNotes.map((item) => (
+              <WidgetItemNote key={item.id} item={item} />
+            ))}
           </WidgetSectionWrapper>
         </WidgetSideWrapper>
       </WidgetPageWrapper>

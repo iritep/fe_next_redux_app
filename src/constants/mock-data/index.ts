@@ -20,3 +20,12 @@ export const widgetDocs: WidgetTypes.Widget[] = [
   { id: '2', text: 'Document #2', x: 0, y: 0, type: 'document' },
   { id: '3', text: 'Document #3', x: 0, y: 0, type: 'document' },
 ];
+
+export const widgetNotes: WidgetTypes.Widget[] = [
+  { id: '1', text: 'Note #1', x: 0, y: 0, type: 'note' },
+  { id: '2', text: 'Note #2', x: 0, y: 0, type: 'note' },
+  { id: '3', text: 'Note #3', x: 0, y: 0, type: 'note' },
+  { id: '4', text: 'Note #4', x: 0, y: 0, type: 'note' },
+  { id: '5', text: 'Note #5', x: 0, y: 0, type: 'note' },
+  { id: '6', text: 'Note #6', x: 0, y: 0, type: 'note' },
+];

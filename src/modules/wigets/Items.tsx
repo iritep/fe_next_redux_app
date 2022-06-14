@@ -9,12 +9,14 @@ import {
   CardContent,
   Typography,
   useTheme,
+  SvgIcon,
 } from '@mui/material';
 import { WidgetTypes } from '@/types';
 import { onDragOver, onDragStart } from '@/utils';
 import {
   ArticleOutlined as ArticleOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
+  NoteAltOutlined as NoteAltOutlinedIcon,
 } from '@mui/icons-material';
 import { UIFlexSpaceBox, UIFlexColumnBox } from '@/components/UI';
 
@@ -106,5 +108,27 @@ export const ItemDoc = ({ item }: Props) => {
         </Box>
       </Paper>
     </UIFlexSpaceBox>
+  );
+};
+
+export const ItemNote = ({ item }: Props) => {
+  const theme = useTheme();
+
+  return (
+    <UIFlexColumnBox
+      draggable
+      onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, item)}
+      component={Box}
+      sx={{ width: 80, position: 'relative', pb: 2 }}
+    >
+      <NoteAltOutlinedIcon sx={{ fontSize: '56px' }} />
+      <Typography
+        gutterBottom
+        variant="caption"
+        sx={{ position: 'absolute', bottom: -4, fontWeight: 600 }}
+      >
+        {item.text}
+      </Typography>
+    </UIFlexColumnBox>
   );
 };
