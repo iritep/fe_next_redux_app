@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Typography } from '@mui/material';
+import { DragEvent, useState } from 'react';
+import { Box } from '@mui/material';
 import {
   Newspaper as NewspaperIcon,
   Chat as ChatIcon,
@@ -13,8 +14,43 @@ import {
   WidgetSectionWrapper,
   WidgetMainBoard,
 } from '@/modules/wigets';
+import { WidgetTypes } from '@/types';
+import { onDragOver, onDragStart } from '@/utils';
+import { widgetStories, widgetConvs } from '@/constants/mock-data';
 
 function WidgetPage() {
+  const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
+    []
+  );
+
+  const getNewDraggedItem = (id: string, type: string): WidgetTypes.Widget => {
+    let newItem = {};
+    if (type === 'story') {
+      widgetStories.map((item) => {
+        if (item.id === id) newItem = { ...item };
+      });
+    } else if (type === 'conversation') {
+      widgetConvs.map((item) => {
+        if (item.id === id) newItem = { ...item };
+      });
+    }
+    return newItem;
+  };
+
+  const onDrop = (e: {
+    dataTransfer: { getData: (arg0: string) => string };
+    pageX: number;
+    pageY: number;
+  }) => {
+    const id = e.dataTransfer.getData('id');
+    const type = e.dataTransfer.getData('type');
+    let newDraggedItem: WidgetTypes.Widget = getNewDraggedItem(id, type);
+    setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
+      ...prev,
+      newDraggedItem,
+    ]);
+  };
+
   return (
     <DashboardLayout title="Widgets">
       <WidgetPageWrapper>
@@ -23,17 +59,45 @@ function WidgetPage() {
             title="Today's Top Stories"
             endIcon={NewspaperIcon}
           >
-            Section 1
+            {widgetStories.map((item) => (
+              <Box key={item.id}>
+                <Box
+                  component="span"
+                  draggable
+                  onDragStart={(e: DragEvent<HTMLSpanElement>) =>
+                    onDragStart(e, item)
+                  }
+                >
+                  {item.text}
+                </Box>
+              </Box>
+            ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Conversations" endIcon={ChatIcon}>
-            Section 2
+            {widgetConvs.map((item) => (
+              <Box key={item.id}>
+                <Box
+                  component="span"
+                  draggable
+                  onDragStart={(e: DragEvent<HTMLSpanElement>) =>
+                    onDragStart(e, item)
+                  }
+                >
+                  {item.text}
+                </Box>
+              </Box>
+            ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
             Section 3
           </WidgetSectionWrapper>
         </WidgetSideWrapper>
 
-        <WidgetMainBoard />
+        <WidgetMainBoard
+          onDragOver={onDragOver}
+          onDrop={onDrop}
+          draggedWidgets={draggedWidgets}
+        />
 
         <WidgetSideWrapper>
           <WidgetSectionWrapper title="">Section 4</WidgetSectionWrapper>
