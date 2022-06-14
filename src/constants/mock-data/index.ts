@@ -1,12 +1,54 @@
 import { WidgetTypes, WidgetItemType } from '@/types';
 
 export const widgetStories: WidgetTypes.Widget[] = [
-  { id: '1', text: 'Story #1', x: 0, y: 0, type: WidgetItemType.STORY },
-  { id: '2', text: 'Story #2', x: 0, y: 0, type: WidgetItemType.STORY },
-  { id: '3', text: 'Story #3', x: 0, y: 0, type: WidgetItemType.STORY },
-  { id: '4', text: 'Story #4', x: 0, y: 0, type: WidgetItemType.STORY },
-  { id: '5', text: 'Story #5', x: 0, y: 0, type: WidgetItemType.STORY },
-  { id: '6', text: 'Story #6', x: 0, y: 0, type: WidgetItemType.STORY },
+  {
+    id: '1',
+    text: 'Story #1',
+    avatar: 'https://picsum.photos/id/0/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
+  {
+    id: '2',
+    text: 'Story #2',
+    avatar: 'https://picsum.photos/id/1/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
+  {
+    id: '3',
+    text: 'Story #3',
+    avatar: 'https://picsum.photos/id/2/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
+  {
+    id: '4',
+    text: 'Story #4',
+    avatar: 'https://picsum.photos/id/3/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
+  {
+    id: '5',
+    text: 'Story #5',
+    avatar: 'https://picsum.photos/id/4/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
+  {
+    id: '6',
+    text: 'Story #6',
+    avatar: 'https://picsum.photos/id/5/60/60',
+    x: 0,
+    y: 0,
+    type: WidgetItemType.STORY,
+  },
 ];
 
 export const widgetConvs: WidgetTypes.Widget[] = [

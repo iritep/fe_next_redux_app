@@ -22,21 +22,24 @@ import { ResponseStatus, WidgetTypes } from '@/types';
 import { onDragOver } from '@/utils';
 import { useAppToast } from '@/providers';
 import { useStoryData } from '@/hooks';
-import { widgetConvs, widgetDocs, widgetNotes } from '@/constants/mock-data';
+import {
+  widgetStories,
+  widgetConvs,
+  widgetDocs,
+  widgetNotes,
+} from '@/constants/mock-data';
 
 function WidgetPage() {
   const appToast = useAppToast();
-  const [widgetStories, setWidgetStories] = useState<WidgetTypes.Widget[]>([]);
   const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
     []
   );
 
   const { loading, data, status } = useStoryData();
-
   useEffect(() => {
     if (!loading && data) {
       const tmp = genStoryData(data);
-      setWidgetStories(tmp);
+      console.log(tmp);
     }
 
     if (status === ResponseStatus.SUCCESS) {

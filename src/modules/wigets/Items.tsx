@@ -42,7 +42,9 @@ export const MiniItemStory = ({ draggable, item }: Props) => {
           />
           <CardContent sx={{ p: 0.5, textAlign: 'center' }}>
             <Typography gutterBottom variant="caption">
-              {item.text}
+              {item.text && item.text?.length > 8
+                ? `${item.text?.substring(0, 8)}...`
+                : item.text}
             </Typography>
           </CardContent>
         </CardActionArea>

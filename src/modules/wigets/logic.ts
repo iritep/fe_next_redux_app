@@ -35,8 +35,11 @@ export const getNewDraggedItem = (
 export const genStoryData = (data: WidgetTypes.Story[]) => {
   if (!data) return [];
   return data.map((el) => ({
-    ...el,
+    id: el.id,
     text: el.author,
     avatar: el.download_url,
+    type: WidgetItemType.STORY,
+    x: 0,
+    y: 0,
   }));
 };
