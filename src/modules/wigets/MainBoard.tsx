@@ -9,7 +9,7 @@ type WidgetMainBoardProps = {
     dataTransfer: { dropEffect: string };
   }) => void;
   onDrop: (e: {
-    dataTransfer: { getData: (arg0: string) => unknown };
+    dataTransfer: { getData: (arg0: string) => string };
     pageX: number;
     pageY: number;
   }) => void;

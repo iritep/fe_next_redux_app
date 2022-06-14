@@ -34,10 +34,7 @@ function WidgetPage() {
     { id: 'c4', text: 'Conversation #4', x: 0, y: 0, type: 'conversation' },
   ]);
 
-  const getNewDraggedItem = (
-    id: unknown,
-    type: unknown
-  ): WidgetState.Widget => {
+  const getNewDraggedItem = (id: string, type: string): WidgetState.Widget => {
     let newItem = {};
     if (type === 'story') {
       storyWidgets.map((item) => {
@@ -52,7 +49,7 @@ function WidgetPage() {
   };
 
   const onDrop = (e: {
-    dataTransfer: { getData: (arg0: string) => unknown };
+    dataTransfer: { getData: (arg0: string) => string };
     pageX: number;
     pageY: number;
   }) => {
