@@ -23,7 +23,7 @@ jobs:
         run: CI=false && yarn install
 
       - name: Build Nextjs App
-        run:  echo "TITLE=TMS Dashboard" >> .env.production && 
+        run:  echo "TITLE=Dashboard" >> .env.production && 
               echo "HOSTING_URL=https://tms.gate4dev.net" >> .env.production &&  
               yarn build
 

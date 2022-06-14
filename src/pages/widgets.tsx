@@ -9,6 +9,8 @@ import {
 } from '@mui/icons-material';
 import { DashboardLayout } from '@/layouts';
 import {
+  WidgetItemStory,
+  WidgetItemConv,
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetSectionWrapper,
@@ -60,32 +62,12 @@ function WidgetPage() {
             endIcon={NewspaperIcon}
           >
             {widgetStories.map((item) => (
-              <Box key={item.id}>
-                <Box
-                  component="span"
-                  draggable
-                  onDragStart={(e: DragEvent<HTMLSpanElement>) =>
-                    onDragStart(e, item)
-                  }
-                >
-                  {item.text}
-                </Box>
-              </Box>
+              <WidgetItemStory key={item.id} item={item} text={item.text} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Conversations" endIcon={ChatIcon}>
             {widgetConvs.map((item) => (
-              <Box key={item.id}>
-                <Box
-                  component="span"
-                  draggable
-                  onDragStart={(e: DragEvent<HTMLSpanElement>) =>
-                    onDragStart(e, item)
-                  }
-                >
-                  {item.text}
-                </Box>
-              </Box>
+              <WidgetItemConv key={item.id} item={item} text={item.text} />
             ))}
           </WidgetSectionWrapper>
           <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
