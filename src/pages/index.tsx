@@ -45,7 +45,10 @@ function Home() {
         <Typography variant="h5">Home</Typography>
         <CustomThemeSwitch checked={checked} onChange={handleThemeChange} />
       </UIFlexSpaceBox>
-      <UIFlexWrapBox sx={{ mt: 5 }}>
+      <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
+        Samara Vehicles
+      </Typography>
+      <UIFlexWrapBox>
         {vehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} data={vehicle} />
         ))}
