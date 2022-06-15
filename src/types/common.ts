@@ -10,9 +10,11 @@ export type PaginateParam = {
   limit?: number;
 };
 
-export enum WidgetItemType {
+export enum WidgetType {
   STORY = 'story',
   CONVERSATION = 'conversation',
   DOCUMENT = 'document',
   NOTE = 'note',
+  DISPATCH = 'dispatch',
+  NULL = 'null',
 }

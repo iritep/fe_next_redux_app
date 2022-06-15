@@ -1,14 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { DragEventHandler } from 'react';
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
 import { isDarkTheme } from '@/theme';
-import { WidgetTypes } from '@/types';
-import {
-  WidgetMiniItemStory,
-  WidgetMiniItemConv,
-  WidgetMiniItemDoc,
-  WidgetMiniItemNote,
-} from '@/modules/wigets';
+import { WidgetTypes, WidgetType } from '@/types';
+import { WidgetStories, WidgetConvs, WidgetDocs, WidgetNotes } from './Widgets';
 
 type WidgetMainBoardProps = {
   onDragOver: (e: {
@@ -48,12 +44,10 @@ function WidgetMainBoard({
             bounds="parent"
           >
             <Box sx={{ display: 'inline-block' }}>
-              {item.type === 'story' && <WidgetMiniItemStory item={item} />}
-              {item.type === 'conversation' && (
-                <WidgetMiniItemConv item={item} />
-              )}
-              {item.type === 'note' && <WidgetMiniItemNote item={item} />}
-              {item.type === 'document' && <WidgetMiniItemDoc item={item} />}
+              {item.type === 'story' && <WidgetStories />}
+              {item.type === 'conversation' && <WidgetConvs />}
+              {item.type === 'document' && <WidgetDocs />}
+              {item.type === 'note' && <WidgetNotes />}
             </Box>
           </Draggable>
         ))}

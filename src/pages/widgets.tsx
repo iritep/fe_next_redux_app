@@ -1,33 +1,19 @@
 import { useEffect, useState } from 'react';
-import {
-  Newspaper as NewspaperIcon,
-  Chat as ChatIcon,
-  LibraryBooks as LibraryBooksIcon,
-  BorderColor as BorderColorIcon,
-} from '@mui/icons-material';
 import { DashboardLayout } from '@/layouts';
 import {
-  WidgetMiniItemStory,
-  WidgetMiniItemConv,
-  WidgetMiniItemDoc,
-  WidgetMiniItemNote,
+  WidgetStories,
+  WidgetConvs,
+  WidgetDocs,
+  WidgetNotes,
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetSectionWrapper,
   WidgetMainBoard,
-  getNewDraggedItem,
-  genStoryData,
 } from '@/modules/wigets';
-import { ResponseStatus, WidgetTypes } from '@/types';
+import { ResponseStatus, WidgetType, WidgetTypes } from '@/types';
 import { onDragOver } from '@/utils';
 import { useAppToast } from '@/providers';
 import { useStoryData } from '@/hooks';
-import {
-  widgetStories,
-  widgetConvs,
-  widgetDocs,
-  widgetNotes,
-} from '@/constants/mock-data';
 
 function WidgetPage() {
   const appToast = useAppToast();
@@ -38,8 +24,7 @@ function WidgetPage() {
   const { loading, data, status } = useStoryData();
   useEffect(() => {
     if (!loading && data) {
-      const tmp = genStoryData(data);
-      console.log(JSON.stringify(tmp, null, 2));
+      console.log(JSON.stringify(data, null, 2));
     }
 
     if (status === ResponseStatus.SUCCESS) {
@@ -55,12 +40,10 @@ function WidgetPage() {
     pageX: number;
     pageY: number;
   }) => {
-    const id = e.dataTransfer.getData('id');
     const type = e.dataTransfer.getData('type');
-    let newDraggedItem: WidgetTypes.Widget = getNewDraggedItem(id, type);
     setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
       ...prev,
-      newDraggedItem,
+      { x: e.pageX, y: e.pageY, type },
     ]);
   };
 
@@ -68,24 +51,9 @@ function WidgetPage() {
     <DashboardLayout title="Widgets">
       <WidgetPageWrapper>
         <WidgetSideWrapper>
-          <WidgetSectionWrapper
-            title="Today's Top Stories"
-            endIcon={NewspaperIcon}
-          >
-            {widgetStories.map((item) => (
-              <WidgetMiniItemStory draggable key={item.id} item={item} />
-            ))}
-          </WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Conversations" endIcon={ChatIcon}>
-            {widgetConvs.map((item) => (
-              <WidgetMiniItemConv draggable key={item.id} item={item} />
-            ))}
-          </WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Documents" endIcon={LibraryBooksIcon}>
-            {widgetDocs.map((item) => (
-              <WidgetMiniItemDoc draggable key={item.id} item={item} />
-            ))}
-          </WidgetSectionWrapper>
+          <WidgetStories draggable />
+          <WidgetConvs draggable />
+          <WidgetDocs draggable />
         </WidgetSideWrapper>
 
         <WidgetMainBoard
@@ -95,13 +63,13 @@ function WidgetPage() {
         />
 
         <WidgetSideWrapper>
-          <WidgetSectionWrapper title="">No data</WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Dispatch">No data</WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Notes" endIcon={BorderColorIcon}>
-            {widgetNotes.map((item) => (
-              <WidgetMiniItemNote draggable key={item.id} item={item} />
-            ))}
+          <WidgetSectionWrapper title="" type={WidgetType.NULL}>
+            No data
           </WidgetSectionWrapper>
+          <WidgetSectionWrapper title="Dispatch" type={WidgetType.DISPATCH}>
+            No data
+          </WidgetSectionWrapper>
+          <WidgetNotes draggable />
         </WidgetSideWrapper>
       </WidgetPageWrapper>
     </DashboardLayout>
