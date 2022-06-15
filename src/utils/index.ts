@@ -1,12 +1,11 @@
-import { WidgetTypes } from '@/types';
+import { WidgetItemType } from '@/types';
 import { DragEvent } from 'react';
 
 export const onDragStart = (
   e: DragEvent<HTMLSpanElement>,
-  item: WidgetTypes.Widget
+  type: WidgetItemType | undefined
 ) => {
-  e.dataTransfer.setData('id', `${item.id}`);
-  e.dataTransfer.setData('type', `${item.type}`);
+  e.dataTransfer.setData('type', `${type}`);
   e.dataTransfer.effectAllowed = 'copy';
 };
 

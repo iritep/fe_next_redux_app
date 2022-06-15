@@ -2,7 +2,7 @@
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
 import { isDarkTheme } from '@/theme';
-import { WidgetTypes } from '@/types';
+import { WidgetTypes, WidgetItemType } from '@/types';
 import {
   WidgetMiniItemStory,
   WidgetMiniItemConv,
@@ -10,17 +10,23 @@ import {
   WidgetMiniItemNote,
 } from '@/modules/wigets';
 
+type DropWidgetProps = {
+  type: WidgetItemType;
+  pageX: number;
+  pageY: number;
+};
+
 type WidgetMainBoardProps = {
   onDragOver: (e: {
     preventDefault: () => void;
-    dataTransfer: { dropEffect: string };
+    dataTransfer: { dropEffect: WidgetItemType };
   }) => void;
   onDrop: (e: {
-    dataTransfer: { getData: (arg0: string) => string };
+    dataTransfer: { getData: (arg0: string) => WidgetItemType };
     pageX: number;
     pageY: number;
   }) => void;
-  draggedWidgets: WidgetTypes.Widget[];
+  draggedWidgets: DropWidgetProps[];
 };
 
 function WidgetMainBoard({
@@ -31,9 +37,9 @@ function WidgetMainBoard({
   const theme = useTheme();
   return (
     <Box
-      sx={{ flex: 1, mt: 4, position: 'relative', width: '100%' }}
       onDragOver={onDragOver}
       onDrop={onDrop}
+      sx={{ flex: 1, mt: 4, position: 'relative', width: '100%' }}
     >
       <Paper
         sx={{ width: 'auto', minHeight: '75vh', p: 2, borderRadius: 3 }}
