@@ -26,6 +26,8 @@ jobs:
         run:  echo "TITLE=Dashboard" >> .env.production && 
               echo "HOSTING_URL=https://tms.gate4dev.net" >> .env.production &&  
               echo "FAKE_IMAGE_API=https://picsum.photos" >> .env.production &&  
+              echo "SAMSARA_API=https://api.samsara.com" >> .env.production &&  
+              echo "SAMSARA_TOKEN=samsara_api_SKOzsYm0jqzzZgFis7V3AJEd96ZTRf" >> .env.production &&  
               yarn build
 
       - name: Configure AWS Credentials
