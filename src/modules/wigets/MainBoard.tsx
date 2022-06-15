@@ -45,10 +45,10 @@ function WidgetMainBoard({
             bounds="parent"
           >
             <Box sx={{ display: 'inline-block' }}>
-              {item.type === 'story' && <WidgetStories />}
-              {item.type === 'conversation' && <WidgetConvs />}
-              {item.type === 'document' && <WidgetDocs />}
-              {item.type === 'note' && <WidgetNotes />}
+              {item.type === 'story' && <WidgetStories bordered />}
+              {item.type === 'conversation' && <WidgetConvs bordered />}
+              {item.type === 'document' && <WidgetDocs bordered />}
+              {item.type === 'note' && <WidgetNotes bordered />}
             </Box>
           </Draggable>
         ))}

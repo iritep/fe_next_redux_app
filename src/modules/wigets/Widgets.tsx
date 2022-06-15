@@ -21,11 +21,13 @@ import { WidgetType } from '@/types';
 import { SectionWrapper } from './Wrappers';
 
 type Props = {
+  bordered?: boolean;
   draggable?: boolean;
 };
 
-export const WidgetStories = ({ draggable }: Props) => (
+export const WidgetStories = ({ bordered, draggable }: Props) => (
   <SectionWrapper
+    bordered={bordered}
     draggable={draggable}
     type={WidgetType.STORY}
     title="Today's Top Stories"
@@ -37,8 +39,9 @@ export const WidgetStories = ({ draggable }: Props) => (
   </SectionWrapper>
 );
 
-export const WidgetConvs = ({ draggable }: Props) => (
+export const WidgetConvs = ({ bordered, draggable }: Props) => (
   <WidgetSectionWrapper
+    bordered={bordered}
     draggable={draggable}
     type={WidgetType.CONVERSATION}
     title="Conversations"
@@ -50,8 +53,9 @@ export const WidgetConvs = ({ draggable }: Props) => (
   </WidgetSectionWrapper>
 );
 
-export const WidgetDocs = ({ draggable }: Props) => (
+export const WidgetDocs = ({ bordered, draggable }: Props) => (
   <WidgetSectionWrapper
+    bordered={bordered}
     draggable={draggable}
     type={WidgetType.DOCUMENT}
     title="Documents"
@@ -63,8 +67,9 @@ export const WidgetDocs = ({ draggable }: Props) => (
   </WidgetSectionWrapper>
 );
 
-export const WidgetNotes = ({ draggable }: Props) => (
+export const WidgetNotes = ({ bordered, draggable }: Props) => (
   <WidgetSectionWrapper
+    bordered={bordered}
     draggable={draggable}
     type={WidgetType.NOTE}
     title="Notes"

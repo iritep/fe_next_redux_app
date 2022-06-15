@@ -38,11 +38,13 @@ interface SectionProps extends WrapperProps {
   title: string;
   type: WidgetType | string;
   draggable?: boolean;
+  bordered?: boolean;
   endIcon?: ElementType<SvgIconProps>;
 }
 
 export const SectionWrapper = ({
   draggable,
+  bordered,
   title,
   type,
   endIcon,
@@ -56,7 +58,7 @@ export const SectionWrapper = ({
       component={Paper}
       spacing={0.5}
       elevation={0}
-      variant={isDarkTheme(theme) ? 'outlined' : 'elevation'}
+      variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
       sx={{ borderRadius: 2, px: 3, py: 2, maxWidth: 316 }}
     >
       <UIFlexSpaceBox>
