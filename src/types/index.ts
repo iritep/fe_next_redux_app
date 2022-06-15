@@ -1,4 +1,4 @@
-export { ResponseStatus, WidgetItemType } from './common';
+export { ResponseStatus, WidgetType } from './common';
 
 export type { PaginateParam } from './common';
 export type { ReduxStateTypes } from './redux-state';

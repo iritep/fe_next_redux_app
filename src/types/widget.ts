@@ -1,13 +1,10 @@
-import { WidgetItemType } from './common';
+import { WidgetType } from './common';
 
 export declare namespace WidgetTypes {
   export type Widget = {
-    id?: string;
-    text?: string;
-    avatar?: string;
-    x?: number;
-    y?: number;
-    type?: WidgetItemType;
+    x: number;
+    y: number;
+    type: WidgetType | string;
   };
 
   export type Story = {

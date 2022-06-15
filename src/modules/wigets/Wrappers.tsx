@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ReactNode, ElementType } from 'react';
+import { ReactNode, DragEvent, ElementType } from 'react';
 import {
   useTheme,
   Paper,
@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import { UIFlexCenterBox, UIFlexSpaceBox } from '@/components/UI';
 import { isDarkTheme } from '@/theme';
+import { onDragStart } from '@/utils';
+import { WidgetType } from '@/types';
 
 interface WrapperProps {
   children: ReactNode | ReactNode[];
@@ -34,18 +36,28 @@ export const SideWrapper = ({ children }: WrapperProps) => {
 
 interface SectionProps extends WrapperProps {
   title: string;
+  type: WidgetType | string;
+  draggable?: boolean;
   endIcon?: ElementType<SvgIconProps>;
 }
 
-export const SectionWrapper = ({ title, endIcon, children }: SectionProps) => {
+export const SectionWrapper = ({
+  draggable,
+  title,
+  type,
+  endIcon,
+  children,
+}: SectionProps) => {
   const theme = useTheme();
   return (
     <Stack
+      draggable={draggable}
+      onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, type)}
       component={Paper}
       spacing={0.5}
       elevation={0}
       variant={isDarkTheme(theme) ? 'outlined' : 'elevation'}
-      sx={{ borderRadius: 2, px: 3, py: 2 }}
+      sx={{ borderRadius: 2, px: 3, py: 2, maxWidth: 316 }}
     >
       <UIFlexSpaceBox>
         <Typography
