@@ -7,5 +7,7 @@ export default {
   },
   API: {
     FAKE_IMAGE: process.env.FAKE_IMAGE_API,
+    SAMSARA_API: process.env.SAMSARA_API,
+    SAMSARA_TOKEN: process.env.SAMSARA_TOKEN,
   },
 };

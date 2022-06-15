@@ -5,13 +5,15 @@ import { UILayoutMain, UILayoutWrapper } from '@/components/UI';
 import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 
 interface Props {
+  title?: string;
+  description?: string;
   children: ReactNode | ReactNode[];
 }
 
 function AppLayout(props: Props) {
   return (
     <UILayoutWrapper>
-      <AppSEO title="" description="" />
+      <AppSEO title={props.title || ''} description={props.description || ''} />
       <AppNavbar />
       <Toolbar id="back-to-top-anchor" />
       <UILayoutMain>

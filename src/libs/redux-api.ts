@@ -1,10 +1,10 @@
-export function apiHeader(token: string | null, params: object = {}) {
+export function apiHeader(token: string | undefined, params: object = {}) {
   if (!token) {
     return { params };
   }
 
   return {
-    headers: { Authorization: `Token ${token}` },
+    headers: { Accept: 'application/json', Authorization: `Bearer ${token}` },
     params,
   };
 }

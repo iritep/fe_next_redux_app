@@ -1,6 +1,7 @@
 import { PaletteMode } from '@mui/material';
 import { WidgetTypes } from './widget';
 import { ResponseStatus } from './common';
+import { VehicleTypes } from './samsara';
 
 export declare namespace ReduxStateTypes {
   export type CommonReduxData<T> = {
@@ -18,5 +19,9 @@ export declare namespace ReduxStateTypes {
 
   export type WidgetState = {
     stories: CommonReduxData<WidgetTypes.Story[]>;
+  };
+
+  export type SamsaraState = {
+    vehicles: CommonReduxData<VehicleTypes.Vehicle[]>;
   };
 }
