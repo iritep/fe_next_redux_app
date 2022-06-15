@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import { AppLayout } from '@/layouts';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { UIFlexSpaceBox, UIFlexWrapBox } from '@/components/UI';
@@ -46,9 +46,22 @@ function Home() {
         <CustomThemeSwitch checked={checked} onChange={handleThemeChange} />
       </UIFlexSpaceBox>
       <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
-        Samara Vehicles
+        Samsara Vehicles
       </Typography>
       <UIFlexWrapBox>
+        {loading &&
+          !data &&
+          [...new Array(4)].map((_, index) => (
+            <Box key={index} sx={{ minWidth: 275 }}>
+              <Skeleton variant="rectangular" width={275} height={118} />
+              <Box sx={{ pt: 0.5 }}>
+                <Skeleton />
+                <Skeleton width="90%" />
+                <Skeleton width="75%" />
+                <Skeleton width="60%" />
+              </Box>
+            </Box>
+          ))}
         {vehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} data={vehicle} />
         ))}
