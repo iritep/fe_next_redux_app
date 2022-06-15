@@ -40,6 +40,7 @@ function WidgetMainBoard({
           <Draggable
             key={index}
             axis="both"
+            // position={{ x: item.x - 350, y: item.y }}
             defaultPosition={{ x: 0, y: 0 }}
             bounds="parent"
           >
