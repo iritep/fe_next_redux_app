@@ -1,14 +1,38 @@
-import { ChangeEvent, useState } from 'react';
-import { Stack, Container, Typography } from '@mui/material';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Stack, Typography } from '@mui/material';
 import { AppLayout } from '@/layouts';
-import { useAppDispatch } from '@/hooks';
-import { UIFlexSpaceBox } from '@/components/UI';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { UIFlexSpaceBox, UIFlexWrapBox } from '@/components/UI';
 import { CustomThemeSwitch } from '@/components/Custom';
 import { toggleThemeMode } from '@/redux/slices';
+import { loadVehicles, samsaraSelector } from '@/redux/slices';
+import { useAppToast } from '@/providers';
+import { VehicleCard } from '@/modules/home';
+import { VehicleTypes } from '@/types';
 
 function Home() {
+  const appToast = useAppToast();
   const dispatch = useAppDispatch();
+  const [vehicles, setVehicles] = useState<VehicleTypes.Vehicle[]>([]);
   const [checked, setChecked] = useState<boolean>(true);
+  const {
+    vehicles: { loading, data, status },
+  } = useAppSelector(samsaraSelector);
+
+  useEffect(() => {
+    if (!loading && data) {
+      setVehicles(data);
+    }
+
+    if (!loading && status === 'failed') {
+      appToast('error', 'Failed to load the vechicles on the Samara API!');
+    }
+  }, [loading, data, status]);
+
+  useEffect(() => {
+    dispatch(loadVehicles());
+  }, []);
 
   const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
@@ -16,21 +40,19 @@ function Home() {
   };
 
   return (
-    <AppLayout>
+    <AppLayout title="Home">
       <UIFlexSpaceBox>
         <Typography variant="h5">Home</Typography>
         <CustomThemeSwitch checked={checked} onChange={handleThemeChange} />
       </UIFlexSpaceBox>
-      <Stack component={Container} maxWidth="xs" spacing={2} sx={{ my: 5 }}>
-        {[...new Array(25)].map((_, index) => (
-          <Typography variant="body1" key={index}>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et.
-          </Typography>
+      <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
+        Samara Vehicles
+      </Typography>
+      <UIFlexWrapBox>
+        {vehicles.map((vehicle) => (
+          <VehicleCard key={vehicle.id} data={vehicle} />
         ))}
-      </Stack>
+      </UIFlexWrapBox>
     </AppLayout>
   );
 }
