@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DragEventHandler } from 'react';
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
 import { isDarkTheme } from '@/theme';
-import { WidgetTypes, WidgetType } from '@/types';
+import { WidgetTypes } from '@/types';
 import { WidgetStories, WidgetConvs, WidgetDocs, WidgetNotes } from './Widgets';
 
 type WidgetMainBoardProps = {

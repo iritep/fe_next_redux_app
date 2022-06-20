@@ -48,7 +48,7 @@ export const WidgetConvs = ({ bordered, draggable }: Props) => (
     endIcon={ChatIcon}
   >
     {widgetConvItems.map((item) => (
-      <WidgetMiniItemConv key={item.id} item={item} />
+      <WidgetMiniItemConv key={item.id} />
     ))}
   </WidgetSectionWrapper>
 );
@@ -62,7 +62,7 @@ export const WidgetDocs = ({ bordered, draggable }: Props) => (
     endIcon={LibraryBooksIcon}
   >
     {widgetDocItems.map((item) => (
-      <WidgetMiniItemDoc key={item.id} item={item} />
+      <WidgetMiniItemDoc key={item.id} />
     ))}
   </WidgetSectionWrapper>
 );

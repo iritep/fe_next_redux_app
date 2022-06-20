@@ -1,11 +1,11 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useAppSelector } from '@/hooks';
 import { appSelector } from '@/redux/slices';
 import { createAppTheme } from '@/theme';
 
 interface AppThemeProviderProps {
-  children: React.ReactNode | React.ReactNode[];
+  children: ReactNode | ReactNode[];
 }
 
 function AppThemeProvider({ children }: AppThemeProviderProps) {

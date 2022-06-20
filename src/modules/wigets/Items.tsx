@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Box,
   Paper,
@@ -18,7 +17,7 @@ import {
 import { UIFlexSpaceBox, UIFlexColumnBox } from '@/components/UI';
 
 type Props = {
-  item: any;
+  item?: any;
 };
 
 export const MiniItemStory = ({ item }: Props) => {
@@ -45,7 +44,7 @@ export const MiniItemStory = ({ item }: Props) => {
   );
 };
 
-export const MiniItemConv = ({ item }: Props) => {
+export const MiniItemConv = () => {
   const theme = useTheme();
   return (
     <UIFlexSpaceBox sx={{ width: '100%', cursor: 'pointer' }}>
@@ -75,7 +74,7 @@ export const MiniItemConv = ({ item }: Props) => {
   );
 };
 
-export const MiniItemDoc = ({ item }: Props) => {
+export const MiniItemDoc = () => {
   const theme = useTheme();
 
   return (

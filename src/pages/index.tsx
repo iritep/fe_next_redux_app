@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Skeleton, Typography } from '@mui/material';
 import { AppLayout } from '@/layouts';

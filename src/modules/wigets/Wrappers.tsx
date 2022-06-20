@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode, DragEvent, ElementType } from 'react';
 import {
   useTheme,
