@@ -42,7 +42,7 @@ function WidgetPage() {
   }) => {
     const type = e.dataTransfer.getData('type');
     setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
-      ...prev,
+      ...prev.filter((widget) => widget.type !== type),
       { x: e.pageX, y: e.pageY, type },
     ]);
   };
