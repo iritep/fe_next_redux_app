@@ -35,6 +35,12 @@ function WidgetPage() {
     }
   }, [loading, data, status]);
 
+  const handleDelete = (type: string) => {
+    setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
+      ...prev.filter((widget) => widget.type !== type),
+    ]);
+  };
+
   const onDrop = (e: {
     dataTransfer: { getData: (arg0: string) => string };
     pageX: number;
@@ -60,6 +66,7 @@ function WidgetPage() {
           onDragOver={onDragOver}
           onDrop={onDrop}
           draggedWidgets={draggedWidgets}
+          handleDelete={handleDelete}
         />
 
         <WidgetSideWrapper>

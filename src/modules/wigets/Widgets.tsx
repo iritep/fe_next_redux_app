@@ -23,15 +23,24 @@ import { SectionWrapper } from './Wrappers';
 type Props = {
   bordered?: boolean;
   draggable?: boolean;
+  dropped?: boolean;
+  handleDelete?: (type: string) => void;
 };
 
-export const WidgetStories = ({ bordered, draggable }: Props) => (
+export const WidgetStories = ({
+  bordered,
+  draggable,
+  dropped,
+  handleDelete,
+}: Props) => (
   <SectionWrapper
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.STORY}
     title="Today's Top Stories"
     endIcon={NewspaperIcon}
+    dropped={dropped}
+    handleDelete={handleDelete}
   >
     {widgetStoryItems.map((item) => (
       <WidgetMiniItemStory key={item.id} item={item} />
@@ -39,13 +48,20 @@ export const WidgetStories = ({ bordered, draggable }: Props) => (
   </SectionWrapper>
 );
 
-export const WidgetConvs = ({ bordered, draggable }: Props) => (
+export const WidgetConvs = ({
+  bordered,
+  draggable,
+  dropped,
+  handleDelete,
+}: Props) => (
   <WidgetSectionWrapper
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.CONVERSATION}
     title="Conversations"
     endIcon={ChatIcon}
+    dropped={dropped}
+    handleDelete={handleDelete}
   >
     {widgetConvItems.map((item) => (
       <WidgetMiniItemConv key={item.id} />
@@ -53,13 +69,20 @@ export const WidgetConvs = ({ bordered, draggable }: Props) => (
   </WidgetSectionWrapper>
 );
 
-export const WidgetDocs = ({ bordered, draggable }: Props) => (
+export const WidgetDocs = ({
+  bordered,
+  draggable,
+  dropped,
+  handleDelete,
+}: Props) => (
   <WidgetSectionWrapper
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.DOCUMENT}
     title="Documents"
     endIcon={LibraryBooksIcon}
+    dropped={dropped}
+    handleDelete={handleDelete}
   >
     {widgetDocItems.map((item) => (
       <WidgetMiniItemDoc key={item.id} />
@@ -67,13 +90,20 @@ export const WidgetDocs = ({ bordered, draggable }: Props) => (
   </WidgetSectionWrapper>
 );
 
-export const WidgetNotes = ({ bordered, draggable }: Props) => (
+export const WidgetNotes = ({
+  bordered,
+  draggable,
+  dropped,
+  handleDelete,
+}: Props) => (
   <WidgetSectionWrapper
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.NOTE}
     title="Notes"
     endIcon={BorderColorIcon}
+    dropped={dropped}
+    handleDelete={handleDelete}
   >
     {widgetNoteItems.map((item) => (
       <WidgetMiniItemNote key={item.id} item={item} />

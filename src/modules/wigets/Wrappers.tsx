@@ -8,6 +8,7 @@ import {
   Divider,
   SvgIconProps,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import { UIFlexCenterBox, UIFlexSpaceBox } from '@/components/UI';
 import { isDarkTheme } from '@/theme';
 import { onDragStart } from '@/utils';
@@ -39,6 +40,8 @@ interface SectionProps extends WrapperProps {
   draggable?: boolean;
   bordered?: boolean;
   endIcon?: ElementType<SvgIconProps>;
+  dropped?: boolean;
+  handleDelete?: (type: string) => void;
 }
 
 export const SectionWrapper = ({
@@ -48,6 +51,8 @@ export const SectionWrapper = ({
   type,
   endIcon,
   children,
+  dropped,
+  handleDelete,
 }: SectionProps) => {
   const theme = useTheme();
   return (
@@ -58,7 +63,13 @@ export const SectionWrapper = ({
       spacing={0.5}
       elevation={0}
       variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
-      sx={{ borderRadius: 2, px: 3, py: 2, maxWidth: 316 }}
+      sx={{
+        borderRadius: 2,
+        px: 3,
+        py: 2,
+        maxWidth: 316,
+        position: 'relative',
+      }}
     >
       <UIFlexSpaceBox>
         <Typography
@@ -73,6 +84,24 @@ export const SectionWrapper = ({
           fontSize="24px"
           color={theme.palette.grey['800']}
         />
+        {dropped && (
+          <Box
+            onClick={() => {
+              if (typeof handleDelete === 'function') {
+                handleDelete(type);
+              }
+            }}
+            component={CloseIcon}
+            fontSize="24px"
+            sx={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              color: 'red',
+              cursor: 'pointer',
+            }}
+          />
+        )}
       </UIFlexSpaceBox>
       <Divider />
       <UIFlexCenterBox

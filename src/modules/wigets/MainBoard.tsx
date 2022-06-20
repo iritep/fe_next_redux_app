@@ -15,12 +15,14 @@ type WidgetMainBoardProps = {
     pageY: number;
   }) => void;
   draggedWidgets: WidgetTypes.Widget[];
+  handleDelete: (type: string) => void;
 };
 
 function WidgetMainBoard({
   onDragOver,
   onDrop,
   draggedWidgets,
+  handleDelete,
 }: WidgetMainBoardProps) {
   const theme = useTheme();
   return (
@@ -43,10 +45,18 @@ function WidgetMainBoard({
             bounds="parent"
           >
             <Box sx={{ display: 'inline-block' }}>
-              {item.type === 'story' && <WidgetStories bordered />}
-              {item.type === 'conversation' && <WidgetConvs bordered />}
-              {item.type === 'document' && <WidgetDocs bordered />}
-              {item.type === 'note' && <WidgetNotes bordered />}
+              {item.type === 'story' && (
+                <WidgetStories bordered dropped handleDelete={handleDelete} />
+              )}
+              {item.type === 'conversation' && (
+                <WidgetConvs bordered dropped handleDelete={handleDelete} />
+              )}
+              {item.type === 'document' && (
+                <WidgetDocs bordered dropped handleDelete={handleDelete} />
+              )}
+              {item.type === 'note' && (
+                <WidgetNotes bordered dropped handleDelete={handleDelete} />
+              )}
             </Box>
           </Draggable>
         ))}
