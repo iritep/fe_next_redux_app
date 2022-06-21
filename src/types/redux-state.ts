@@ -8,6 +8,7 @@ export declare namespace ReduxStateTypes {
     loading: boolean;
     data: T | null;
     status: ResponseStatus | null;
+    draggedWidgets: WidgetTypes.Widget[];
   };
 
   export type AppState = {
@@ -19,6 +20,10 @@ export declare namespace ReduxStateTypes {
 
   export type WidgetState = {
     stories: CommonReduxData<WidgetTypes.Story[]>;
+  };
+
+  export type WidgetsState = {
+    draggedWidgets: WidgetTypes.Widget[];
   };
 
   export type SamsaraState = {

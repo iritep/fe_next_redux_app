@@ -16,3 +16,11 @@ export {
   samsaraSelector,
   loadVehicles,
 } from './samsara.slice';
+
+export {
+  default as widgetsReducer,
+  widgetsSelector,
+  addWidgetToDraggedItems,
+  deleteWidgetFromDraggedItems,
+  setPositionOfDraggedItem,
+} from './widgets.slice';

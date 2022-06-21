@@ -13,6 +13,8 @@ import { UIFlexCenterBox, UIFlexSpaceBox } from '@/components/UI';
 import { isDarkTheme } from '@/theme';
 import { onDragStart } from '@/utils';
 import { WidgetType } from '@/types';
+import { useAppDispatch } from '@/hooks';
+import { deleteWidgetFromDraggedItems } from '@/redux/slices';
 
 interface WrapperProps {
   children: ReactNode | ReactNode[];
@@ -41,7 +43,7 @@ interface SectionProps extends WrapperProps {
   bordered?: boolean;
   endIcon?: ElementType<SvgIconProps>;
   dropped?: boolean;
-  handleDelete?: (type: string) => void;
+  id?: number;
 }
 
 export const SectionWrapper = ({
@@ -52,9 +54,10 @@ export const SectionWrapper = ({
   endIcon,
   children,
   dropped,
-  handleDelete,
+  id,
 }: SectionProps) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   return (
     <Stack
       draggable={draggable}
@@ -87,8 +90,8 @@ export const SectionWrapper = ({
         {dropped && (
           <Box
             onClick={() => {
-              if (typeof handleDelete === 'function') {
-                handleDelete(type);
+              if (id) {
+                dispatch(deleteWidgetFromDraggedItems(id));
               }
             }}
             component={CloseIcon}

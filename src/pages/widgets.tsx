@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { DashboardLayout } from '@/layouts';
 import {
   WidgetStories,
@@ -10,16 +10,12 @@ import {
   WidgetSectionWrapper,
   WidgetMainBoard,
 } from '@/modules/wigets';
-import { ResponseStatus, WidgetType, WidgetTypes } from '@/types';
-import { onDragOver } from '@/utils';
+import { ResponseStatus, WidgetType } from '@/types';
 import { useAppToast } from '@/providers';
 import { useStoryData } from '@/hooks';
 
 function WidgetPage() {
   const appToast = useAppToast();
-  const [draggedWidgets, setDraggedWidgets] = useState<WidgetTypes.Widget[]>(
-    []
-  );
 
   const { loading, data, status } = useStoryData();
   useEffect(() => {
@@ -35,24 +31,6 @@ function WidgetPage() {
     }
   }, [loading, data, status]);
 
-  const handleDelete = (type: string) => {
-    setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
-      ...prev.filter((widget) => widget.type !== type),
-    ]);
-  };
-
-  const onDrop = (e: {
-    dataTransfer: { getData: (arg0: string) => string };
-    pageX: number;
-    pageY: number;
-  }) => {
-    const type = e.dataTransfer.getData('type');
-    setDraggedWidgets((prev: WidgetTypes.Widget[]): WidgetTypes.Widget[] => [
-      ...prev.filter((widget) => widget.type !== type),
-      { x: e.pageX, y: e.pageY, type },
-    ]);
-  };
-
   return (
     <DashboardLayout title="Widgets">
       <WidgetPageWrapper>
@@ -62,12 +40,7 @@ function WidgetPage() {
           <WidgetDocs draggable />
         </WidgetSideWrapper>
 
-        <WidgetMainBoard
-          onDragOver={onDragOver}
-          onDrop={onDrop}
-          draggedWidgets={draggedWidgets}
-          handleDelete={handleDelete}
-        />
+        <WidgetMainBoard />
 
         <WidgetSideWrapper>
           <WidgetSectionWrapper title="" type={WidgetType.NULL}>
