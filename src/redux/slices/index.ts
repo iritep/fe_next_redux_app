@@ -6,13 +6,15 @@ export {
 } from './app.slice';
 
 export {
-  default as widgetReducer,
-  widgetSelector,
-  loadStories,
-} from './widget.slice';
-
-export {
   default as samsaraReducer,
   samsaraSelector,
   loadVehicles,
 } from './samsara.slice';
+
+export {
+  default as widgetsReducer,
+  widgetsSelector,
+  addWidgetToDraggedItems,
+  deleteWidgetFromDraggedItems,
+  setPositionOfDraggedItem,
+} from './widgets.slice';

@@ -16,16 +16,16 @@ import {
 import { createWrapper } from 'next-redux-wrapper';
 import { ReduxStateTypes } from '@/types';
 import storage from './storage';
-import { appReducer, widgetReducer, samsaraReducer } from './slices';
+import { appReducer, samsaraReducer, widgetsReducer } from './slices';
 
 const combinedReducer = combineReducers<{
   app: ReduxStateTypes.AppState;
-  widget: ReduxStateTypes.WidgetState;
   samsara: ReduxStateTypes.SamsaraState;
+  widgets: ReduxStateTypes.WidgetsState;
 }>({
   app: appReducer,
-  widget: widgetReducer,
   samsara: samsaraReducer,
+  widgets: widgetsReducer,
 });
 
 const createStore = () => {

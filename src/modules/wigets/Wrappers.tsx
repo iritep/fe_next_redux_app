@@ -1,4 +1,5 @@
-import { ReactNode, DragEvent, ElementType } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ReactNode, DragEvent, ElementType, useState } from 'react';
 import {
   useTheme,
   Paper,
@@ -7,11 +8,15 @@ import {
   Stack,
   Divider,
   SvgIconProps,
+  IconButton,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import { UIFlexCenterBox, UIFlexSpaceBox } from '@/components/UI';
 import { isDarkTheme } from '@/theme';
 import { onDragStart } from '@/utils';
 import { WidgetType } from '@/types';
+import { useAppDispatch } from '@/hooks';
+import { deleteWidgetFromDraggedItems } from '@/redux/slices';
 
 interface WrapperProps {
   children: ReactNode | ReactNode[];
@@ -39,6 +44,8 @@ interface SectionProps extends WrapperProps {
   draggable?: boolean;
   bordered?: boolean;
   endIcon?: ElementType<SvgIconProps>;
+  dropped?: boolean;
+  id?: number;
 }
 
 export const SectionWrapper = ({
@@ -48,17 +55,30 @@ export const SectionWrapper = ({
   type,
   endIcon,
   children,
+  dropped,
+  id,
 }: SectionProps) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const [isShown, setIsShown] = useState<boolean>(false);
+
   return (
     <Stack
       draggable={draggable}
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, type)}
       component={Paper}
       spacing={0.5}
       elevation={0}
       variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
-      sx={{ borderRadius: 2, px: 3, py: 2, maxWidth: 316 }}
+      sx={{
+        borderRadius: 2,
+        px: 3,
+        py: 2,
+        maxWidth: 316,
+        position: 'relative',
+      }}
     >
       <UIFlexSpaceBox>
         <Typography
@@ -73,6 +93,28 @@ export const SectionWrapper = ({
           fontSize="24px"
           color={theme.palette.grey['800']}
         />
+        {dropped && isShown && (
+          <Paper
+            component={IconButton}
+            elevation={0}
+            size="small"
+            variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
+            onClick={() => {
+              if (id) {
+                dispatch(deleteWidgetFromDraggedItems(id));
+              }
+            }}
+            sx={{
+              borderRadius: 34,
+              position: 'absolute',
+              right: -15,
+              top: -15,
+              cursor: 'pointer',
+            }}
+          >
+            <CloseIcon />
+          </Paper>
+        )}
       </UIFlexSpaceBox>
       <Divider />
       <UIFlexCenterBox
