@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DragEvent, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
@@ -11,10 +12,7 @@ import { widgetsSelector } from '@/redux/slices';
 
 function WidgetMainBoard() {
   const theme = useTheme();
-  const draggableRef = useRef<{
-    clientWidth: number;
-    clientHeight: number;
-  }>(null);
+  const draggableRef = useRef<any>(null);
   const dispatch = useAppDispatch();
   const { draggedWidgets } = useAppSelector(widgetsSelector);
   const [offsetDiv, setOffsetDiv] = useState({ x: 0, y: 0 });

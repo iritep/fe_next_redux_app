@@ -8,7 +8,7 @@ export declare namespace ReduxStateTypes {
     loading: boolean;
     data: T | null;
     status: ResponseStatus | null;
-    draggedWidgets: WidgetTypes.Widget[];
+    draggedWidgets?: WidgetTypes.Widget[];
   };
 
   export type AppState = {
