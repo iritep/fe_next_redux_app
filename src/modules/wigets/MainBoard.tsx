@@ -11,8 +11,10 @@ import { widgetsSelector } from '@/redux/slices';
 
 function WidgetMainBoard() {
   const theme = useTheme();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const draggableRef: any = useRef(null);
+  const draggableRef = useRef<{
+    clientWidth: number;
+    clientHeight: number;
+  }>(null);
   const dispatch = useAppDispatch();
   const { draggedWidgets } = useAppSelector(widgetsSelector);
   const [offsetDiv, setOffsetDiv] = useState({ x: 0, y: 0 });
@@ -34,8 +36,8 @@ function WidgetMainBoard() {
   useEffect(() => {
     if (draggableRef?.current) {
       setOffsetDiv({
-        x: draggableRef.current.clientWidth / 2,
-        y: draggableRef.current.clientHeight / 2,
+        x: draggableRef?.current.clientWidth / 2 - 160,
+        y: draggableRef?.current.clientHeight / 2 - 200,
       });
     }
   }, [draggableRef.current]);
