@@ -1,40 +1,39 @@
+import { Box } from '@mui/material';
 import { DashboardLayout } from '@/layouts';
 import {
-  WidgetStories,
-  WidgetConvs,
-  WidgetDocs,
-  WidgetNotes,
   WidgetPageWrapper,
   WidgetSideWrapper,
-  WidgetMiniWrapper,
   WidgetMainBoard,
 } from '@/modules/wigets';
-import { WidgetType } from '@/types';
+import { useAppSelector } from '@/hooks';
+import { widgetSelector } from '@/redux/slices';
 
 function WidgetPage() {
+  const { draggableWidgets } = useAppSelector(widgetSelector);
+
   return (
     <DashboardLayout title="Widgets">
       <WidgetPageWrapper>
         <WidgetSideWrapper>
-          <WidgetStories draggable />
-          <WidgetConvs draggable />
-          <WidgetDocs draggable />
+          {draggableWidgets.left.map((widget) => (
+            <Box
+              component={widget.component}
+              draggable={widget.draggable}
+              key={widget.type}
+            />
+          ))}
         </WidgetSideWrapper>
 
         <WidgetMainBoard />
 
         <WidgetSideWrapper>
-          <WidgetMiniWrapper color="error" title="" type={WidgetType.NULL}>
-            No data
-          </WidgetMiniWrapper>
-          <WidgetMiniWrapper
-            color="secondary"
-            title="Dispatch"
-            type={WidgetType.DISPATCH}
-          >
-            No data
-          </WidgetMiniWrapper>
-          <WidgetNotes draggable />
+          {draggableWidgets.right.map((widget) => (
+            <Box
+              component={widget.component}
+              draggable={widget.draggable}
+              key={widget.type}
+            />
+          ))}
         </WidgetSideWrapper>
       </WidgetPageWrapper>
     </DashboardLayout>

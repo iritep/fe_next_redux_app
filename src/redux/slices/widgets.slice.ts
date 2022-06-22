@@ -1,8 +1,14 @@
-import { ReduxStateTypes, WidgetTypes } from '@/types';
+import { ReduxStateTypes, WidgetJSON } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../store';
+import { AppThunk, RootState } from '@/redux/store';
+import { miniLeftWidgets, miniRightWidgets } from '@/modules/wigets';
+import { WidgetType } from '@/types';
 
-const initialState: ReduxStateTypes.WidgetsState = {
+const initialState: ReduxStateTypes.WidgetState = {
+  draggableWidgets: {
+    left: miniLeftWidgets,
+    right: miniRightWidgets,
+  },
   draggedWidgets: [],
 };
 
@@ -10,7 +16,16 @@ const widgetsSlice = createSlice({
   name: 'widgets',
   initialState,
   reducers: {
-    addWidget: (state, action: PayloadAction<WidgetTypes.Widget>) => {
+    dropNewWidget: (state, action: PayloadAction<WidgetType | string>) => {
+      const { payload } = action;
+      state.draggableWidgets.left = miniLeftWidgets.filter(
+        (el) => el.type !== payload
+      );
+      state.draggableWidgets.right = miniRightWidgets.filter(
+        (el) => el.type !== payload
+      );
+    },
+    addWidget: (state, action: PayloadAction<WidgetJSON.Widget>) => {
       const { payload } = action;
       state.draggedWidgets = [payload];
     },
@@ -36,10 +51,11 @@ const widgetsSlice = createSlice({
   },
 });
 
-const { addWidget, deleteWidget, setPosition } = widgetsSlice.actions;
+const { addWidget, deleteWidget, setPosition, dropNewWidget } =
+  widgetsSlice.actions;
 
 export const addWidgetToDraggedItems =
-  (newWidget: WidgetTypes.Widget): AppThunk =>
+  (newWidget: WidgetJSON.Widget): AppThunk =>
   (dispatch) => {
     dispatch(addWidget(newWidget));
   };
@@ -55,5 +71,11 @@ export const setPositionOfDraggedItem =
     dispatch(setPosition({ id, x, y }));
   };
 
-export const widgetsSelector = (state: RootState) => state.widgets;
+export const dropWidget =
+  (type: WidgetType | string): AppThunk =>
+  (dispatch) => {
+    dispatch(dropNewWidget(type));
+  };
+
+export const widgetSelector = (state: RootState) => state.widgets;
 export default widgetsSlice.reducer;

@@ -39,14 +39,14 @@ export const SideWrapper = ({ children }: WrapperProps) => {
 };
 
 interface MiniProps extends WrapperProps {
+  id?: number;
   color: 'success' | 'error' | 'secondary' | 'info' | 'warning';
   title: string;
-  type: WidgetType | string;
+  type: WidgetType;
   draggable?: boolean;
   bordered?: boolean;
   endIcon?: ElementType<SvgIconProps>;
   dropped?: boolean;
-  id?: number;
 }
 
 export const MiniWrapper = ({
@@ -64,12 +64,16 @@ export const MiniWrapper = ({
   const dispatch = useAppDispatch();
   const [isShown, setIsShown] = useState<boolean>(false);
 
+  const handleDragStart = (event: DragEvent<HTMLSpanElement>) => {
+    onDragStart(event, type);
+  };
+
   return (
     <Stack
       draggable={draggable}
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
-      onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, type)}
+      onDragStart={handleDragStart}
       component={Paper}
       spacing={0.5}
       elevation={draggable ? 4 : 0}

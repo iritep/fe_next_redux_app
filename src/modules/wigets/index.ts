@@ -11,6 +11,15 @@ export {
   MiniItemStory as WidgetMiniItemStory,
   MiniItemDoc as WidgetMiniItemDoc,
   MiniItemNote as WidgetMiniItemNote,
-} from './Items';
+} from './MiniItems';
 
-export { WidgetStories, WidgetConvs, WidgetDocs, WidgetNotes } from './Widgets';
+export {
+  WidgetMiniStories,
+  WidgetMiniConvs,
+  WidgetMiniDocs,
+  WidgetMiniNotes,
+  WidgetMiniDispatch,
+  WidgetMiniUsers,
+} from './MiniWidgets';
+
+export { miniLeftWidgets, miniRightWidgets } from './logic';

@@ -8,12 +8,12 @@ import { toggleThemeMode } from '@/redux/slices';
 import { loadVehicles, samsaraSelector } from '@/redux/slices';
 import { useAppToast } from '@/providers';
 import { VehicleCard } from '@/modules/home';
-import { VehicleTypes } from '@/types';
+import { VehicleJSON } from '@/types';
 
 function Home() {
   const appToast = useAppToast();
   const dispatch = useAppDispatch();
-  const [vehicles, setVehicles] = useState<VehicleTypes.Vehicle[]>([]);
+  const [vehicles, setVehicles] = useState<VehicleJSON.Vehicle[]>([]);
   const [checked, setChecked] = useState<boolean>(true);
   const {
     vehicles: { loading, data, status },

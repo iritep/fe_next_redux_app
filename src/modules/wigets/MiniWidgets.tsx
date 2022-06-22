@@ -3,6 +3,7 @@ import {
   Chat as ChatIcon,
   LibraryBooks as LibraryBooksIcon,
   BorderColor as BorderColorIcon,
+  Group as GroupIcon,
 } from '@mui/icons-material';
 import {
   widgetStoryItems,
@@ -17,17 +18,16 @@ import {
   WidgetMiniItemNote,
   WidgetMiniWrapper,
 } from '@/modules/wigets';
-import { WidgetType } from '@/types';
+import { WidgetJSON, WidgetType } from '@/types';
 
-type Props = {
-  bordered?: boolean;
-  draggable?: boolean;
-  dropped?: boolean;
-  id?: number;
-};
-
-export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
+export const WidgetMiniStories = ({
+  id,
+  bordered,
+  dropped,
+  draggable,
+}: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
+    id={id}
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -35,7 +35,6 @@ export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
     title="Today's Top Stories"
     endIcon={NewspaperIcon}
     dropped={dropped}
-    id={id}
   >
     {widgetStoryItems.map((item) => (
       <WidgetMiniItemStory key={item.id} item={item} />
@@ -43,8 +42,14 @@ export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
   </WidgetMiniWrapper>
 );
 
-export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
+export const WidgetMiniConvs = ({
+  id,
+  bordered,
+  draggable,
+  dropped,
+}: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
+    id={id}
     color="info"
     bordered={bordered}
     draggable={draggable}
@@ -52,7 +57,6 @@ export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
     title="Conversations"
     endIcon={ChatIcon}
     dropped={dropped}
-    id={id}
   >
     {widgetConvItems.map((item) => (
       <WidgetMiniItemConv key={item.id} />
@@ -60,8 +64,14 @@ export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
   </WidgetMiniWrapper>
 );
 
-export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
+export const WidgetMiniDocs = ({
+  bordered,
+  draggable,
+  dropped,
+  id,
+}: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
+    id={id}
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -69,7 +79,6 @@ export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
     title="Documents"
     endIcon={LibraryBooksIcon}
     dropped={dropped}
-    id={id}
   >
     {widgetDocItems.map((item) => (
       <WidgetMiniItemDoc key={item.id} />
@@ -77,8 +86,14 @@ export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
   </WidgetMiniWrapper>
 );
 
-export const WidgetNotes = ({ bordered, draggable, dropped, id }: Props) => (
+export const WidgetMiniNotes = ({
+  id,
+  bordered,
+  draggable,
+  dropped,
+}: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
+    id={id}
     color="warning"
     bordered={bordered}
     draggable={draggable}
@@ -86,10 +101,48 @@ export const WidgetNotes = ({ bordered, draggable, dropped, id }: Props) => (
     title="Notes"
     endIcon={BorderColorIcon}
     dropped={dropped}
-    id={id}
   >
     {widgetNoteItems.map((item) => (
       <WidgetMiniItemNote key={item.id} item={item} />
     ))}
+  </WidgetMiniWrapper>
+);
+
+export const WidgetMiniDispatch = ({
+  id,
+  bordered,
+  draggable,
+  dropped,
+}: WidgetJSON.WidgetProps) => (
+  <WidgetMiniWrapper
+    id={id}
+    color="secondary"
+    bordered={bordered}
+    draggable={draggable}
+    type={WidgetType.DISPATCH}
+    title="Dispatch"
+    dropped={dropped}
+  >
+    No data
+  </WidgetMiniWrapper>
+);
+
+export const WidgetMiniUsers = ({
+  id,
+  bordered,
+  draggable,
+  dropped,
+}: WidgetJSON.WidgetProps) => (
+  <WidgetMiniWrapper
+    id={id}
+    color="error"
+    bordered={bordered}
+    draggable={draggable}
+    type={WidgetType.USER}
+    title="Users"
+    endIcon={GroupIcon}
+    dropped={dropped}
+  >
+    No data
   </WidgetMiniWrapper>
 );

@@ -3,7 +3,7 @@ import { WidgetType } from '@/types';
 
 export const onDragStart = (
   e: DragEvent<HTMLSpanElement>,
-  type: WidgetType | string
+  type: WidgetType
 ) => {
   e.dataTransfer.setData('type', type);
   e.dataTransfer.effectAllowed = 'copy';

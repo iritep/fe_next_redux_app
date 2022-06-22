@@ -11,10 +11,10 @@ export type PaginateParam = {
 };
 
 export enum WidgetType {
-  STORY = 'story',
-  CONVERSATION = 'conversation',
-  DOCUMENT = 'document',
-  NOTE = 'note',
-  DISPATCH = 'dispatch',
-  NULL = 'null',
+  NOTE = 'NOTE',
+  USER = 'USER',
+  STORY = 'STORY',
+  DISPATCH = 'DISPATCH',
+  DOCUMENT = 'DOCUMENT',
+  CONVERSATION = 'CONVERSATION',
 }

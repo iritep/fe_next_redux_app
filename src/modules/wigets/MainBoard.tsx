@@ -1,26 +1,37 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DragEvent, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
 import { isDarkTheme } from '@/theme';
-import { WidgetTypes } from '@/types';
-import { WidgetStories, WidgetConvs, WidgetDocs, WidgetNotes } from './Widgets';
+import { WidgetJSON, WidgetType } from '@/types';
+import {
+  WidgetMiniStories,
+  WidgetMiniConvs,
+  WidgetMiniDocs,
+  WidgetMiniNotes,
+  WidgetMiniUsers,
+} from './MiniWidgets';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { addWidgetToDraggedItems } from '@/redux/slices';
+import {
+  dropWidget,
+  addWidgetToDraggedItems,
+  widgetSelector,
+} from '@/redux/slices';
 import { onDragOver } from '@/utils';
-import { widgetsSelector } from '@/redux/slices';
 
 function WidgetMainBoard() {
   const theme = useTheme();
   const draggableRef = useRef<any>(null);
   const dispatch = useAppDispatch();
-  const { draggedWidgets } = useAppSelector(widgetsSelector);
+  const { draggedWidgets } = useAppSelector(widgetSelector);
   const [offsetDiv, setOffsetDiv] = useState({ x: 0, y: 0 });
 
   const generateId = () => Date.now();
 
-  const onDrop = (e: DragEvent<HTMLElement>) => {
+  const handleDrop = (e: DragEvent<HTMLElement>) => {
     const type = e.dataTransfer.getData('type');
+    dispatch(dropWidget(type));
     dispatch(
       addWidgetToDraggedItems({
         id: generateId(),
@@ -50,7 +61,7 @@ function WidgetMainBoard() {
       className="container"
       sx={{ flex: 1, mt: 4, position: 'relative', width: '100%' }}
       onDragOver={onDragOver}
-      onDrop={onDrop}
+      onDrop={handleDrop}
       ref={draggableRef}
     >
       <Paper
@@ -59,7 +70,7 @@ function WidgetMainBoard() {
         variant={isDarkTheme(theme) ? 'outlined' : 'elevation'}
         ref={draggableRef}
       >
-        {draggedWidgets.map((item: WidgetTypes.Widget, index: number) => {
+        {draggedWidgets.map((item: WidgetJSON.Widget, index: number) => {
           return (
             <Draggable
               key={index}
@@ -68,17 +79,20 @@ function WidgetMainBoard() {
               bounds="parent"
             >
               <Box sx={{ display: 'inline-block' }}>
-                {item.type === 'story' && (
-                  <WidgetStories id={item.id} {...widgetProps} />
+                {item.type === WidgetType.STORY && (
+                  <WidgetMiniStories id={item.id} {...widgetProps} />
                 )}
-                {item.type === 'conversation' && (
-                  <WidgetConvs id={item.id} {...widgetProps} />
+                {item.type === WidgetType.CONVERSATION && (
+                  <WidgetMiniConvs id={item.id} {...widgetProps} />
                 )}
-                {item.type === 'document' && (
-                  <WidgetDocs id={item.id} {...widgetProps} />
+                {item.type === WidgetType.DOCUMENT && (
+                  <WidgetMiniDocs id={item.id} {...widgetProps} />
                 )}
-                {item.type === 'note' && (
-                  <WidgetNotes id={item.id} {...widgetProps} />
+                {item.type === WidgetType.NOTE && (
+                  <WidgetMiniNotes id={item.id} {...widgetProps} />
+                )}
+                {item.type === WidgetType.USER && (
+                  <WidgetMiniUsers id={item.id} {...widgetProps} />
                 )}
               </Box>
             </Draggable>

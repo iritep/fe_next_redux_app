@@ -1,6 +1,6 @@
 import { WidgetType } from './common';
 
-export declare namespace WidgetTypes {
+export declare namespace WidgetJSON {
   export type Widget = {
     id: number;
     x: number;
@@ -8,12 +8,16 @@ export declare namespace WidgetTypes {
     type: WidgetType | string;
   };
 
-  export type Story = {
-    id: string;
-    author: string;
-    width: number;
-    height: number;
-    url: string;
-    download_url: string;
+  export type WidgetProps = {
+    id?: number;
+    bordered?: boolean;
+    draggable?: boolean;
+    dropped?: boolean;
+  };
+
+  export type WidgetElement = {
+    type: WidgetType;
+    draggable?: boolean;
+    component: (props: WidgetJSON.WidgetProps) => JSX.Element;
   };
 }

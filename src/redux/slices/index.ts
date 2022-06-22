@@ -12,8 +12,9 @@ export {
 } from './samsara.slice';
 
 export {
-  default as widgetsReducer,
-  widgetsSelector,
+  default as widgetReducer,
+  widgetSelector,
+  dropWidget,
   addWidgetToDraggedItems,
   deleteWidgetFromDraggedItems,
   setPositionOfDraggedItem,

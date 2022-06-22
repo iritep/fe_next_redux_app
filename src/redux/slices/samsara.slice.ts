@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
-import { ResponseStatus, ReduxStateTypes, VehicleTypes } from '@/types';
+import { ResponseStatus, ReduxStateTypes, VehicleJSON } from '@/types';
 import { samsaraApi } from '@/redux/api';
 
 const initialState: ReduxStateTypes.SamsaraState = {
@@ -13,7 +13,7 @@ const initialState: ReduxStateTypes.SamsaraState = {
 };
 
 export const loadVehicles = createAsyncThunk<
-  VehicleTypes.ApiRes,
+  VehicleJSON.ApiRes,
   undefined,
   { state: RootState }
 >(`samsara/loadVehicles`, async (_, thunkAPI) => {

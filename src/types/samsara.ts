@@ -1,4 +1,4 @@
-export declare namespace VehicleTypes {
+export declare namespace VehicleJSON {
   export type Vehicle = {
     id: string;
     make: string;
@@ -20,11 +20,13 @@ export declare namespace VehicleTypes {
     updatedAtTime: string;
   };
 
+  export type ApiPageInfo = {
+    endCursor: string;
+    hasNextPage: false;
+  };
+
   export type ApiRes = {
     data: Vehicle[];
-    pagination: {
-      endCursor: string;
-      hasNextPage: false;
-    };
+    pagination: ApiPageInfo;
   };
 }

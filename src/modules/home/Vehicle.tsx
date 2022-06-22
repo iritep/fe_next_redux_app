@@ -1,4 +1,4 @@
-import { VehicleTypes } from '@/types';
+import { VehicleJSON } from '@/types';
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 type Props = {
-  data: VehicleTypes.Vehicle;
+  data: VehicleJSON.Vehicle;
 };
 
 function VehicleCard({ data }: Props) {
