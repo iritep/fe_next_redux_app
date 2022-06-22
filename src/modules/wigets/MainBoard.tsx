@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DragEvent } from 'react';
 import Draggable from 'react-draggable';
 import { Box, Paper, useTheme } from '@mui/material';
@@ -6,6 +7,8 @@ import { isDarkTheme } from '@/theme';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { dropWidget, widgetSelector } from '@/redux/slices';
 import { onDragOver } from '@/utils';
+import { WidgetType } from '@/types';
+import MainWidget from './MainWidgets';
 
 function WidgetMainBoard() {
   const theme = useTheme();
@@ -35,11 +38,26 @@ function WidgetMainBoard() {
             defaultPosition={{ x: 0, y: 0 }}
             bounds="parent"
           >
-            <Box
-              component={droppedWidget.component}
-              bordered={true}
-              dropped={true}
-            />
+            <Box className="dropped-widget">
+              {droppedWidget.type === WidgetType.STORY ? (
+                <MainWidget title="Today's Top Stories" color="success" />
+              ) : null}
+              {droppedWidget.type === WidgetType.CONVERSATION ? (
+                <MainWidget title="Conversations" color="info" />
+              ) : null}
+              {droppedWidget.type === WidgetType.DOCUMENT ? (
+                <MainWidget title="Documents" color="success" />
+              ) : null}
+              {droppedWidget.type === WidgetType.DISPATCH ? (
+                <MainWidget title="Dispatch" color="secondary" />
+              ) : null}
+              {droppedWidget.type === WidgetType.NOTE ? (
+                <MainWidget title="Stored Notes" color="warning" />
+              ) : null}
+              {droppedWidget.type === WidgetType.USER ? (
+                <MainWidget title="Users" color="error" />
+              ) : null}
+            </Box>
           </Draggable>
         ) : null}
       </Paper>

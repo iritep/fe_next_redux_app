@@ -17,7 +17,7 @@ function WidgetPage() {
         <WidgetSideWrapper>
           {draggableWidgets.left.map((widget) => (
             <Box
-              component={widget.component}
+              component={widget.mini}
               draggable={widget.draggable}
               key={widget.type}
             />
@@ -29,7 +29,7 @@ function WidgetPage() {
         <WidgetSideWrapper>
           {draggableWidgets.right.map((widget) => (
             <Box
-              component={widget.component}
+              component={widget.mini}
               draggable={widget.draggable}
               key={widget.type}
             />

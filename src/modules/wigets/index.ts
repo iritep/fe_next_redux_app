@@ -23,3 +23,5 @@ export {
 } from './MiniWidgets';
 
 export { miniLeftWidgets, miniRightWidgets } from './logic';
+
+export { default as MainWidget } from './MainWidgets';

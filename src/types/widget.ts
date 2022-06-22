@@ -10,6 +10,6 @@ export declare namespace WidgetJSON {
   export type Widget = {
     type: WidgetType;
     draggable?: boolean;
-    component: (props: WidgetJSON.WidgetProps) => JSX.Element;
+    mini: (props: WidgetJSON.WidgetProps) => JSX.Element;
   };
 }
