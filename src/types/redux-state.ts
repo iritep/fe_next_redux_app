@@ -19,10 +19,10 @@ export declare namespace ReduxStateTypes {
 
   export type WidgetState = {
     draggableWidgets: {
-      left: WidgetJSON.WidgetElement[];
-      right: WidgetJSON.WidgetElement[];
+      left: WidgetJSON.Widget[];
+      right: WidgetJSON.Widget[];
     };
-    draggedWidgets: WidgetJSON.Widget[];
+    droppedWidget: WidgetJSON.Widget | undefined;
   };
 
   export type SamsaraState = {

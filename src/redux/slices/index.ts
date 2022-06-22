@@ -15,7 +15,5 @@ export {
   default as widgetReducer,
   widgetSelector,
   dropWidget,
-  addWidgetToDraggedItems,
-  deleteWidgetFromDraggedItems,
-  setPositionOfDraggedItem,
+  resetWidgetState,
 } from './widgets.slice';

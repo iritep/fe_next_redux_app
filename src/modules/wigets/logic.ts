@@ -8,7 +8,7 @@ import {
   WidgetMiniDispatch,
 } from '@/modules/wigets';
 
-export const miniLeftWidgets: WidgetJSON.WidgetElement[] = [
+export const miniLeftWidgets: WidgetJSON.Widget[] = [
   { type: WidgetType.STORY, component: WidgetMiniStories, draggable: true },
   {
     type: WidgetType.CONVERSATION,
@@ -18,7 +18,7 @@ export const miniLeftWidgets: WidgetJSON.WidgetElement[] = [
   { type: WidgetType.DOCUMENT, component: WidgetMiniDocs, draggable: true },
 ];
 
-export const miniRightWidgets: WidgetJSON.WidgetElement[] = [
+export const miniRightWidgets: WidgetJSON.Widget[] = [
   { type: WidgetType.DISPATCH, component: WidgetMiniDispatch },
   { type: WidgetType.USER, component: WidgetMiniUsers, draggable: true },
   { type: WidgetType.NOTE, component: WidgetMiniNotes, draggable: true },

@@ -21,13 +21,11 @@ import {
 import { WidgetJSON, WidgetType } from '@/types';
 
 export const WidgetMiniStories = ({
-  id,
   bordered,
   dropped,
   draggable,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -43,13 +41,11 @@ export const WidgetMiniStories = ({
 );
 
 export const WidgetMiniConvs = ({
-  id,
   bordered,
   draggable,
   dropped,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="info"
     bordered={bordered}
     draggable={draggable}
@@ -68,10 +64,8 @@ export const WidgetMiniDocs = ({
   bordered,
   draggable,
   dropped,
-  id,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -87,13 +81,11 @@ export const WidgetMiniDocs = ({
 );
 
 export const WidgetMiniNotes = ({
-  id,
   bordered,
   draggable,
   dropped,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="warning"
     bordered={bordered}
     draggable={draggable}
@@ -109,13 +101,11 @@ export const WidgetMiniNotes = ({
 );
 
 export const WidgetMiniDispatch = ({
-  id,
   bordered,
   draggable,
   dropped,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="secondary"
     bordered={bordered}
     draggable={draggable}
@@ -128,13 +118,11 @@ export const WidgetMiniDispatch = ({
 );
 
 export const WidgetMiniUsers = ({
-  id,
   bordered,
   draggable,
   dropped,
 }: WidgetJSON.WidgetProps) => (
   <WidgetMiniWrapper
-    id={id}
     color="error"
     bordered={bordered}
     draggable={draggable}

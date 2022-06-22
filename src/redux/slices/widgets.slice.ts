@@ -1,4 +1,4 @@
-import { ReduxStateTypes, WidgetJSON } from '@/types';
+import { ReduxStateTypes } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '@/redux/store';
 import { miniLeftWidgets, miniRightWidgets } from '@/modules/wigets';
@@ -9,7 +9,7 @@ const initialState: ReduxStateTypes.WidgetState = {
     left: miniLeftWidgets,
     right: miniRightWidgets,
   },
-  draggedWidgets: [],
+  droppedWidget: undefined,
 };
 
 const widgetsSlice = createSlice({
@@ -24,58 +24,29 @@ const widgetsSlice = createSlice({
       state.draggableWidgets.right = miniRightWidgets.filter(
         (el) => el.type !== payload
       );
+      state.droppedWidget = miniLeftWidgets
+        .concat(miniRightWidgets)
+        .find((el) => el.type === payload);
     },
-    addWidget: (state, action: PayloadAction<WidgetJSON.Widget>) => {
-      const { payload } = action;
-      state.draggedWidgets = [payload];
-    },
-    deleteWidget: (state, action: PayloadAction<number>) => {
-      const { payload } = action;
-      state.draggedWidgets = state.draggedWidgets.filter(
-        (widget) => widget.id !== payload
-      );
-    },
-    setPosition: (
-      state,
-      action: PayloadAction<{ id: number; x: number; y: number }>
-    ) => {
-      const { x, y, id } = action.payload;
-
-      state.draggedWidgets = state.draggedWidgets.map((widget) => {
-        if (widget.id === id) {
-          return { ...widget, x, y };
-        }
-        return widget;
-      });
+    resetState: (state) => {
+      state.draggableWidgets.left = miniLeftWidgets;
+      state.draggableWidgets.right = miniRightWidgets;
+      state.droppedWidget = undefined;
     },
   },
 });
 
-const { addWidget, deleteWidget, setPosition, dropNewWidget } =
-  widgetsSlice.actions;
-
-export const addWidgetToDraggedItems =
-  (newWidget: WidgetJSON.Widget): AppThunk =>
-  (dispatch) => {
-    dispatch(addWidget(newWidget));
-  };
-export const deleteWidgetFromDraggedItems =
-  (id: number): AppThunk =>
-  (dispatch) => {
-    dispatch(deleteWidget(id));
-  };
-
-export const setPositionOfDraggedItem =
-  (id: number, x: number, y: number): AppThunk =>
-  (dispatch) => {
-    dispatch(setPosition({ id, x, y }));
-  };
+const { dropNewWidget, resetState } = widgetsSlice.actions;
 
 export const dropWidget =
   (type: WidgetType | string): AppThunk =>
   (dispatch) => {
     dispatch(dropNewWidget(type));
   };
+
+export const resetWidgetState = (): AppThunk => (dispatch) => {
+  dispatch(resetState());
+};
 
 export const widgetSelector = (state: RootState) => state.widgets;
 export default widgetsSlice.reducer;

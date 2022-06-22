@@ -16,7 +16,7 @@ import { isDarkTheme } from '@/theme';
 import { onDragStart } from '@/utils';
 import { WidgetType } from '@/types';
 import { useAppDispatch } from '@/hooks';
-import { deleteWidgetFromDraggedItems } from '@/redux/slices';
+import { resetWidgetState } from '@/redux/slices';
 
 interface WrapperProps {
   children: ReactNode | ReactNode[];
@@ -39,7 +39,6 @@ export const SideWrapper = ({ children }: WrapperProps) => {
 };
 
 interface MiniProps extends WrapperProps {
-  id?: number;
   color: 'success' | 'error' | 'secondary' | 'info' | 'warning';
   title: string;
   type: WidgetType;
@@ -50,7 +49,6 @@ interface MiniProps extends WrapperProps {
 }
 
 export const MiniWrapper = ({
-  id,
   color,
   draggable,
   bordered,
@@ -66,6 +64,10 @@ export const MiniWrapper = ({
 
   const handleDragStart = (event: DragEvent<HTMLSpanElement>) => {
     onDragStart(event, type);
+  };
+
+  const handleRemoveWidget = () => {
+    dispatch(resetWidgetState());
   };
 
   return (
@@ -106,11 +108,7 @@ export const MiniWrapper = ({
             elevation={0}
             size="small"
             variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
-            onClick={() => {
-              if (id) {
-                dispatch(deleteWidgetFromDraggedItems(id));
-              }
-            }}
+            onClick={handleRemoveWidget}
             sx={{
               borderRadius: 34,
               position: 'absolute',
