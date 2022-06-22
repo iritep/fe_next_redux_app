@@ -12,33 +12,44 @@ export const miniLeftWidgets: WidgetJSON.Widget[] = [
   {
     draggable: true,
     type: WidgetType.STORY,
-    mini: WidgetMiniStories,
   },
   {
     draggable: true,
     type: WidgetType.CONVERSATION,
-    mini: WidgetMiniConvs,
   },
   {
     draggable: true,
     type: WidgetType.DOCUMENT,
-    mini: WidgetMiniDocs,
   },
 ];
 
 export const miniRightWidgets: WidgetJSON.Widget[] = [
   {
+    draggable: false,
     type: WidgetType.DISPATCH,
-    mini: WidgetMiniDispatch,
   },
   {
     draggable: true,
     type: WidgetType.USER,
-    mini: WidgetMiniUsers,
   },
   {
     draggable: true,
     type: WidgetType.NOTE,
-    mini: WidgetMiniNotes,
   },
 ];
+
+export const renderMiniWidget = (type: WidgetType, draggable?: boolean) => {
+  if (type === WidgetType.STORY)
+    return <WidgetMiniStories draggable={draggable} />;
+  if (type === WidgetType.CONVERSATION)
+    return <WidgetMiniConvs draggable={draggable} />;
+  if (type === WidgetType.DOCUMENT)
+    return <WidgetMiniDocs draggable={draggable} />;
+  if (type === WidgetType.USER)
+    return <WidgetMiniUsers draggable={draggable} />;
+  if (type === WidgetType.DISPATCH)
+    return <WidgetMiniDispatch draggable={draggable} />;
+  if (type === WidgetType.NOTE)
+    return <WidgetMiniNotes draggable={draggable} />;
+  return null;
+};

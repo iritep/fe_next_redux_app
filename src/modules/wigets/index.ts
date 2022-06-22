@@ -2,6 +2,7 @@ export {
   PageWrapper as WidgetPageWrapper,
   SideWrapper as WidgetSideWrapper,
   MiniWrapper as WidgetMiniWrapper,
+  WideWrapper as WidgetWideWrapper,
 } from './Wrappers';
 
 export { default as WidgetMainBoard } from './MainBoard';
@@ -22,6 +23,13 @@ export {
   WidgetMiniUsers,
 } from './MiniWidgets';
 
-export { miniLeftWidgets, miniRightWidgets } from './logic';
+export {
+  WidgetWideStories,
+  WidgetWideConvs,
+  WidgetWideDocs,
+  WidgetWideNotes,
+  WidgetWideDispatch,
+  WidgetWideUsers,
+} from './WideWidgets';
 
-export { default as MainWidget } from './MainWidgets';
+export { miniLeftWidgets, miniRightWidgets, renderMiniWidget } from './logic';

@@ -4,6 +4,7 @@ import {
   WidgetPageWrapper,
   WidgetSideWrapper,
   WidgetMainBoard,
+  renderMiniWidget,
 } from '@/modules/wigets';
 import { useAppSelector } from '@/hooks';
 import { widgetSelector } from '@/redux/slices';
@@ -16,11 +17,9 @@ function WidgetPage() {
       <WidgetPageWrapper>
         <WidgetSideWrapper>
           {draggableWidgets.left.map((widget) => (
-            <Box
-              component={widget.mini}
-              draggable={widget.draggable}
-              key={widget.type}
-            />
+            <Box key={widget.type}>
+              {renderMiniWidget(widget.type, widget.draggable)}
+            </Box>
           ))}
         </WidgetSideWrapper>
 
@@ -28,11 +27,9 @@ function WidgetPage() {
 
         <WidgetSideWrapper>
           {draggableWidgets.right.map((widget) => (
-            <Box
-              component={widget.mini}
-              draggable={widget.draggable}
-              key={widget.type}
-            />
+            <Box key={widget.type}>
+              {renderMiniWidget(widget.type, widget.draggable)}
+            </Box>
           ))}
         </WidgetSideWrapper>
       </WidgetPageWrapper>
