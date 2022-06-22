@@ -39,6 +39,7 @@ export const SideWrapper = ({ children }: WrapperProps) => {
 };
 
 interface SectionProps extends WrapperProps {
+  color: 'success' | 'error' | 'secondary' | 'info' | 'warning';
   title: string;
   type: WidgetType | string;
   draggable?: boolean;
@@ -49,6 +50,8 @@ interface SectionProps extends WrapperProps {
 }
 
 export const SectionWrapper = ({
+  id,
+  color,
   draggable,
   bordered,
   title,
@@ -56,7 +59,6 @@ export const SectionWrapper = ({
   endIcon,
   children,
   dropped,
-  id,
 }: SectionProps) => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
@@ -70,15 +72,16 @@ export const SectionWrapper = ({
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, type)}
       component={Paper}
       spacing={0.5}
-      elevation={0}
+      elevation={4}
       variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
-      sx={{
-        borderRadius: 2,
+      sx={(theme) => ({
+        borderRadius: '4px 4px 8px 8px',
+        borderTop: `4px solid ${theme.palette[color].main}`,
         px: 3,
         py: 2,
         maxWidth: 316,
         position: 'relative',
-      }}
+      })}
     >
       <UIFlexSpaceBox>
         <Typography

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  useTheme,
   AppBar,
   Box,
   Toolbar,
@@ -19,7 +18,6 @@ import {
   MoreVert as MoreIcon,
 } from '@mui/icons-material';
 import { appImageLoader } from '@/libs/image-loader';
-import { isDarkTheme } from '@/theme';
 import { Search, SearchIconWrapper, StyledInputBase } from './ui';
 import { MobileMenu, DesktopMenu } from './Menus';
 
@@ -29,7 +27,6 @@ interface Props {
 
 function AppNavbar({ isAuthenticated }: Props) {
   const router = useRouter();
-  const theme = useTheme();
   const menuId = 'appbar-desktop-menu';
   const mobileMenuId = 'appbar-mobile-menu';
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -58,10 +55,7 @@ function AppNavbar({ isAuthenticated }: Props) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        color="inherit"
-        sx={!isDarkTheme(theme) ? { boxShadow: 'none' } : undefined}
-      >
+      <AppBar color="inherit">
         <Toolbar component={isAuthenticated ? Box : Container}>
           <Image
             src="images/logo.png"

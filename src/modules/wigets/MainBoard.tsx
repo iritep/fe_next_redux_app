@@ -55,7 +55,7 @@ function WidgetMainBoard() {
     >
       <Paper
         sx={{ width: 'auto', minHeight: '75vh', p: 2, borderRadius: 3 }}
-        elevation={0}
+        elevation={2}
         variant={isDarkTheme(theme) ? 'outlined' : 'elevation'}
         ref={draggableRef}
       >

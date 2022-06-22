@@ -29,6 +29,7 @@ type Props = {
 
 export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
   <SectionWrapper
+    color="success"
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.STORY}
@@ -45,6 +46,7 @@ export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
 
 export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
   <WidgetSectionWrapper
+    color="info"
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.CONVERSATION}
@@ -61,6 +63,7 @@ export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
 
 export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
   <WidgetSectionWrapper
+    color="success"
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.DOCUMENT}
@@ -77,6 +80,7 @@ export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
 
 export const WidgetNotes = ({ bordered, draggable, dropped, id }: Props) => (
   <WidgetSectionWrapper
+    color="warning"
     bordered={bordered}
     draggable={draggable}
     type={WidgetType.NOTE}

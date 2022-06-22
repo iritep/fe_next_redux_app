@@ -24,10 +24,14 @@ function WidgetPage() {
         <WidgetMainBoard />
 
         <WidgetSideWrapper>
-          <WidgetSectionWrapper title="" type={WidgetType.NULL}>
+          <WidgetSectionWrapper color="error" title="" type={WidgetType.NULL}>
             No data
           </WidgetSectionWrapper>
-          <WidgetSectionWrapper title="Dispatch" type={WidgetType.DISPATCH}>
+          <WidgetSectionWrapper
+            color="secondary"
+            title="Dispatch"
+            type={WidgetType.DISPATCH}
+          >
             No data
           </WidgetSectionWrapper>
           <WidgetNotes draggable />
