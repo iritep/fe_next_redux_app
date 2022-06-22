@@ -6,7 +6,7 @@ import {
   WidgetNotes,
   WidgetPageWrapper,
   WidgetSideWrapper,
-  WidgetSectionWrapper,
+  WidgetMiniWrapper,
   WidgetMainBoard,
 } from '@/modules/wigets';
 import { WidgetType } from '@/types';
@@ -24,16 +24,16 @@ function WidgetPage() {
         <WidgetMainBoard />
 
         <WidgetSideWrapper>
-          <WidgetSectionWrapper color="error" title="" type={WidgetType.NULL}>
+          <WidgetMiniWrapper color="error" title="" type={WidgetType.NULL}>
             No data
-          </WidgetSectionWrapper>
-          <WidgetSectionWrapper
+          </WidgetMiniWrapper>
+          <WidgetMiniWrapper
             color="secondary"
             title="Dispatch"
             type={WidgetType.DISPATCH}
           >
             No data
-          </WidgetSectionWrapper>
+          </WidgetMiniWrapper>
           <WidgetNotes draggable />
         </WidgetSideWrapper>
       </WidgetPageWrapper>

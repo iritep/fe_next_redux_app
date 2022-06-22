@@ -38,7 +38,7 @@ export const SideWrapper = ({ children }: WrapperProps) => {
   );
 };
 
-interface SectionProps extends WrapperProps {
+interface MiniProps extends WrapperProps {
   color: 'success' | 'error' | 'secondary' | 'info' | 'warning';
   title: string;
   type: WidgetType | string;
@@ -49,7 +49,7 @@ interface SectionProps extends WrapperProps {
   id?: number;
 }
 
-export const SectionWrapper = ({
+export const MiniWrapper = ({
   id,
   color,
   draggable,
@@ -59,7 +59,7 @@ export const SectionWrapper = ({
   endIcon,
   children,
   dropped,
-}: SectionProps) => {
+}: MiniProps) => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [isShown, setIsShown] = useState<boolean>(false);
@@ -72,7 +72,7 @@ export const SectionWrapper = ({
       onDragStart={(e: DragEvent<HTMLSpanElement>) => onDragStart(e, type)}
       component={Paper}
       spacing={0.5}
-      elevation={4}
+      elevation={draggable ? 4 : 0}
       variant={isDarkTheme(theme) || bordered ? 'outlined' : 'elevation'}
       sx={(theme) => ({
         borderRadius: '4px 4px 8px 8px',

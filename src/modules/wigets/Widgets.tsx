@@ -15,10 +15,9 @@ import {
   WidgetMiniItemConv,
   WidgetMiniItemDoc,
   WidgetMiniItemNote,
-  WidgetSectionWrapper,
+  WidgetMiniWrapper,
 } from '@/modules/wigets';
 import { WidgetType } from '@/types';
-import { SectionWrapper } from './Wrappers';
 
 type Props = {
   bordered?: boolean;
@@ -28,7 +27,7 @@ type Props = {
 };
 
 export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
-  <SectionWrapper
+  <WidgetMiniWrapper
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -41,11 +40,11 @@ export const WidgetStories = ({ bordered, draggable, dropped, id }: Props) => (
     {widgetStoryItems.map((item) => (
       <WidgetMiniItemStory key={item.id} item={item} />
     ))}
-  </SectionWrapper>
+  </WidgetMiniWrapper>
 );
 
 export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
-  <WidgetSectionWrapper
+  <WidgetMiniWrapper
     color="info"
     bordered={bordered}
     draggable={draggable}
@@ -58,11 +57,11 @@ export const WidgetConvs = ({ bordered, draggable, dropped, id }: Props) => (
     {widgetConvItems.map((item) => (
       <WidgetMiniItemConv key={item.id} />
     ))}
-  </WidgetSectionWrapper>
+  </WidgetMiniWrapper>
 );
 
 export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
-  <WidgetSectionWrapper
+  <WidgetMiniWrapper
     color="success"
     bordered={bordered}
     draggable={draggable}
@@ -75,11 +74,11 @@ export const WidgetDocs = ({ bordered, draggable, dropped, id }: Props) => (
     {widgetDocItems.map((item) => (
       <WidgetMiniItemDoc key={item.id} />
     ))}
-  </WidgetSectionWrapper>
+  </WidgetMiniWrapper>
 );
 
 export const WidgetNotes = ({ bordered, draggable, dropped, id }: Props) => (
-  <WidgetSectionWrapper
+  <WidgetMiniWrapper
     color="warning"
     bordered={bordered}
     draggable={draggable}
@@ -92,5 +91,5 @@ export const WidgetNotes = ({ bordered, draggable, dropped, id }: Props) => (
     {widgetNoteItems.map((item) => (
       <WidgetMiniItemNote key={item.id} item={item} />
     ))}
-  </WidgetSectionWrapper>
+  </WidgetMiniWrapper>
 );
