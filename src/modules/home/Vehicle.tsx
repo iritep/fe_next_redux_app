@@ -13,7 +13,7 @@ type Props = {
 
 function VehicleCard({ data }: Props) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 280 }}>
       <CardContent>
         <Typography variant="caption" color="text.secondary" gutterBottom>
           {data.id}
